@@ -1,0 +1,39 @@
+# Ignore binary files and executables
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore go build and test files
+*.o
+*.a
+*.test
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore system and temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# Ignore dependency directories
+/vendor/
+/go.sum
+
+# Ignore gqlgen generated files
+graphql/generated.go
+
+# Ignore gorm generated files
+models/
+
+# Ignore logs and debug files
+*.log
+debug/
+
+# Ignore compiled output
+/bin/
+/build/
