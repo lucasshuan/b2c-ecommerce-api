@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+	"time"
 )
 
 type AddProductToCartInput struct {
@@ -15,11 +16,15 @@ type AddProductToCartInput struct {
 }
 
 type Cart struct {
-	ID       string         `json:"id"`
-	IsActive bool           `json:"isActive"`
-	Value    float64        `json:"value"`
-	User     *User          `json:"user"`
-	Products []*CartProduct `json:"products"`
+	ID        string         `json:"id"`
+	IsActive  bool           `json:"isActive"`
+	Value     float64        `json:"value"`
+	User      *User          `json:"user"`
+	UserID    *string        `json:"userId,omitempty"`
+	Order     *Order         `json:"order,omitempty"`
+	Products  []*CartProduct `json:"products,omitempty"`
+	CreatedAt time.Time      `json:"createdAt"`
+	UpdatedAt time.Time      `json:"updatedAt"`
 }
 
 type CartProduct struct {
@@ -29,8 +34,9 @@ type CartProduct struct {
 }
 
 type Category struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID       string     `json:"id"`
+	Name     string     `json:"name"`
+	Products []*Product `json:"products,omitempty"`
 }
 
 type CreateCartInput struct {
@@ -51,7 +57,7 @@ type CreateOrderInput struct {
 type CreateProductInput struct {
 	Name        string  `json:"name"`
 	Price       float64 `json:"price"`
-	Description string  `json:"description"`
+	Description *string `json:"description,omitempty"`
 }
 
 type CreateUserInput struct {
@@ -79,17 +85,20 @@ type Order struct {
 	BillingType   *BillingType   `json:"billingType,omitempty"`
 	Cart          *Cart          `json:"cart"`
 	User          *User          `json:"user"`
+	CreatedAt     time.Time      `json:"createdAt"`
+	UpdatedAt     time.Time      `json:"updatedAt"`
 }
 
 type Product struct {
-	ID          string  `json:"id"`
-	Name        string  `json:"name"`
-	Price       float64 `json:"price"`
-	Description string  `json:"description"`
-}
-
-type Subscription struct {
-	OrderPaymentUpdate *Order `json:"orderPaymentUpdate,omitempty"`
+	ID          string    `json:"id"`
+	Name        string    `json:"name"`
+	Price       float64   `json:"price"`
+	Description *string   `json:"description,omitempty"`
+	CategoryID  *string   `json:"categoryID,omitempty"`
+	Category    *Category `json:"category,omitempty"`
+	Carts       []*Cart   `json:"carts,omitempty"`
+	CreatedAt   time.Time `json:"createdAt"`
+	UpdatedAt   time.Time `json:"updatedAt"`
 }
 
 type UpdateCategoryInput struct {
@@ -113,12 +122,13 @@ type UpdateUserInput struct {
 }
 
 type User struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Email     string `json:"email"`
-	Password  string `json:"password"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	ID        string    `json:"id"`
+	Name      string    `json:"name"`
+	Email     string    `json:"email"`
+	Cart      []*Cart   `json:"cart,omitempty"`
+	Orders    []*Order  `json:"orders,omitempty"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 type BillingType string

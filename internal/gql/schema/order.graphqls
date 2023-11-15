@@ -8,8 +8,8 @@ type Order {
   billingType: BillingType
   cart: Cart!
   user: User!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: Time!
+  updatedAt: Time!
 }
 
 input CreateOrderInput {
@@ -30,16 +30,16 @@ enum BillingType {
   DEBIT_CARD
 }
 
-extends type Query {
+extend type Query {
   getOrder(id: ID!): Order
   listOrders(userID: ID!): [Order!]
 }
 
-extends type Mutation {
+extend type Mutation {
   createOrder(input: CreateOrderInput!): Order!
   deleteOrder(id: ID!): Order!
 }
 
-extends type Subscription {
+extend type Subscription {
   orderPaymentUpdate(orderId: ID!): Order
 }

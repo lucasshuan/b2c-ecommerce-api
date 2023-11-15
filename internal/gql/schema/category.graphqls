@@ -15,13 +15,13 @@ input UpdateCategoryInput {
   name: String
 }
 
-extends type Query {
+extend type Query {
   getCategory(id: ID!): Category
   listCategories: [Category!]
 }
 
-extends type Mutation {
+extend type Mutation {
   createCategory(input: CreateCategoryInput!): Category
   updateCategory(input: UpdateCategoryInput!): Category
-  deleteCategory(id: ID!): Boolean
+  deleteCategory(id: ID!): Boolean!
 }

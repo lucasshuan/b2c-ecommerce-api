@@ -1,12 +1,11 @@
 type User {
   id: ID!
-  name: String!
-  email: String!
-  password: String!
+  name: String! @length(min: 6, max: 32)
+  email: String! @email
   cart: [Cart!]
   orders: [Order!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: Time!
+  updatedAt: Time!
 }
 
 input CreateUserInput {
@@ -28,12 +27,12 @@ input LoginInput {
   password: String!
 }
 
-extends type Query {
+extend type Query {
   getUser(id: ID!): User
   listUsers: [User!]
 }
 
-extends type Mutation {
+extend type Mutation {
   login(LoginInput: LoginInput!): User
   registerUser(input: CreateUserInput!): User
   updateUser(input: UpdateUserInput!): User

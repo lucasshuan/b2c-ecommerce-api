@@ -8,8 +8,8 @@ type Product {
   categoryID: ID
   category: Category
   carts: [Cart!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: Time!
+  updatedAt: Time!
 }
 
 input CreateProductInput {
@@ -25,7 +25,6 @@ input UpdateProductInput {
   description: String
 }
 
-
 input ListProductsInput {
   name: String
   price: Float
@@ -38,12 +37,12 @@ enum SortDirection {
   DESC
 }
 
-extends type Query {
+extend type Query {
   getProduct(id: ID!): Product
   listProducts(input: ListProductsInput): [Product!]
 }
 
-extends type Mutation {
+extend type Mutation {
   createProduct(input: CreateProductInput!): Product
   updateProduct(input: UpdateProductInput!): Product
   deleteProduct(id: ID!): Boolean!

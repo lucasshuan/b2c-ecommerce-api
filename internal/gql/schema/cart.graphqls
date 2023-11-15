@@ -4,10 +4,10 @@ type Cart {
   value: Float!
   user: User!
   userId: ID
-  cart: Cart
+  order: Order
   products: [CartProduct!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: Time!
+  updatedAt: Time!
 }
 
 type CartProduct {
@@ -28,12 +28,12 @@ input AddProductToCartInput {
   quantity: Int!
 }
 
-extends type Query {
+extend type Query {
   getCart(id: ID!): Cart
   listCarts(userID: ID!): [Cart]
 }
 
-extends type Mutation {
+extend type Mutation {
   createCart(input: CreateCartInput!): Cart
   addProductToCart(input: AddProductToCartInput!): CartProduct
   removeProductFromCart(cartProductID: ID!): Cart

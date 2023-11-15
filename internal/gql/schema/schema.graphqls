@@ -1,11 +1,16 @@
-type Query {}
+type Query
 
-type Mutation {}
+type Mutation
 
-type Subscription {}
+type Subscription
 
 schema {
   query: Query
   mutation: Mutation
   subscription: Subscription
 }
+
+scalar Time
+
+directive @length(min: Int, max: Int) on FIELD_DEFINITION
+directive @email on FIELD_DEFINITION
