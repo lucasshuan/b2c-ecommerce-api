@@ -6,16 +6,12 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/nobeluc/ecommerce-api/internal/gql"
 	"github.com/nobeluc/ecommerce-api/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-var (
-	Databases = make(map[string]*gorm.DB)
-	Resolvers = make(map[string]*gql.Resolver)
-)
+var Databases = make(map[string]*gorm.DB)
 
 var (
 	tenantIDsList = []string{
@@ -43,9 +39,6 @@ func Initialize() {
 			log.Fatalf("failed to initialize database for tenant %s: %v", tenantID, err)
 		}
 		Databases[tenantID] = db
-
-		resolver := gql.NewResolver(db)
-		Resolvers[tenantID] = resolver
 	}
 }
 
