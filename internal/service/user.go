@@ -22,7 +22,7 @@ func (s *UserService) ListAllUsers() ([]*model.User, error) {
 	return s.repo.ListAllUsers()
 }
 
-func (s *UserService) FindUserById(id uint) (*model.User, error) {
+func (s *UserService) FindUserByID(id uint) (*model.User, error) {
 	return s.repo.FindUserById(id)
 }
 

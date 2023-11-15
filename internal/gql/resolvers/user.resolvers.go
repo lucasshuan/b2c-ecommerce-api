@@ -30,14 +30,13 @@ func (r *mutationResolver) RegisterUser(ctx context.Context, input gql.CreateUse
 		return nil, err
 	}
 
-	res := &gql.User{
+	return &gql.User{
 		ID:        strconv.Itoa(int(user.ID)),
 		Name:      user.Name,
 		Email:     user.Email,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: user.UpdatedAt,
-	}
-	return res, nil
+	}, nil
 }
 
 // UpdateUser is the resolver for the updateUser field.
@@ -52,7 +51,23 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, err
 
 // GetUser is the resolver for the getUser field.
 func (r *queryResolver) GetUser(ctx context.Context, id string) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: GetUser - getUser"))
+	userID, err := strconv.Atoi(id)
+	if err != nil {
+		return nil, err
+	}
+
+	user, err := r.userService.FindUserByID(uint(userID))
+	if err != nil {
+		return nil, err
+	}
+
+	return &gql.User{
+		ID:        id,
+		Name:      user.Name,
+		Email:     user.Email,
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: user.UpdatedAt,
+	}, nil
 }
 
 // ListUsers is the resolver for the listUsers field.
