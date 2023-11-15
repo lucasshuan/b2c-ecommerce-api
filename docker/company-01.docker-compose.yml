@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mysql:
+    container_name: company-01
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - company_01_mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: default_schema
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_TCP_PORT: 3400
+    ports:
+      - 3400:3400

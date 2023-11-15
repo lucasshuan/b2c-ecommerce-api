@@ -1,11 +1,11 @@
 # Where are all the schema files located? globs are supported eg  src/**/*.graphqls
 schema:
-  - graphql/*.graphqls
+  - gql/*.graphqls
 
 # Where should the generated server code go?
 exec:
-  filename: graphql/generated.go
-  package: graphql
+  filename: gql/generated.go
+  package: gql
 
 # Uncomment to enable federation
 # federation:
@@ -14,14 +14,14 @@ exec:
 
 # Where should any generated models go?
 model:
-  filename: graphql/model/models_gen.go
+  filename: gql/model/models_gen.go
   package: model
 
 # Where should the resolver implementations go?
 resolver:
   layout: follow-schema
-  dir: graphql
-  package: graphql
+  dir: gql
+  package: gql
   filename_template: "{name}.resolvers.go"
   # Optional: turn on to not generate template comments above resolvers
   # omit_template_comment: false
@@ -73,7 +73,9 @@ autobind:
 # The first line in each type will be used as defaults for resolver arguments and
 # modelgen, the others will be allowed when binding to fields. Configure them to
 # your liking
-models:
+models:models:
+  User:
+    model: github.com/nobeluc/ecommerce-api/model#User
   ID:
     model:
       - github.com/99designs/gqlgen/graphql.ID
