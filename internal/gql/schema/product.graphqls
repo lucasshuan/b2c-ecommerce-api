@@ -1,0 +1,50 @@
+#import "./category.graphqls"
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String
+  categoryID: ID
+  category: Category
+  carts: [Cart!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  description: String
+}
+
+input UpdateProductInput {
+  id: ID!
+  name: String
+  price: Float
+  description: String
+}
+
+
+input ListProductsInput {
+  name: String
+  price: Float
+  order: String
+  sort: SortDirection
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+extends type Query {
+  getProduct(id: ID!): Product
+  listProducts(input: ListProductsInput): [Product!]
+}
+
+extends type Mutation {
+  createProduct(input: CreateProductInput!): Product
+  updateProduct(input: UpdateProductInput!): Product
+  deleteProduct(id: ID!): Boolean!
+}

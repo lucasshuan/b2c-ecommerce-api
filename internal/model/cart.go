@@ -9,6 +9,8 @@ type Cart struct {
 	IsActive bool
 	Value    float64
 	UserID   uint
+	OrderID  uint
 	User     User
-	Products []CartProduct
+	Order    *Order
+	Products []Product
 }

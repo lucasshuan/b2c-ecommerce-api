@@ -1,0 +1,41 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  cart: [Cart!]
+  orders: [Order!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: String
+  newPassword: String
+  confirmPassword: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+extends type Query {
+  getUser(id: ID!): User
+  listUsers: [User!]
+}
+
+extends type Mutation {
+  login(LoginInput: LoginInput!): User
+  registerUser(input: CreateUserInput!): User
+  updateUser(input: UpdateUserInput!): User
+  deleteUser(id: ID!): Boolean!
+}

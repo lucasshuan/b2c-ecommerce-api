@@ -1,0 +1,45 @@
+#import "./cart.graphqls"
+#import "./user.graphqls"
+
+type Order {
+  id: ID!
+  value: Float!
+  paymentStatus: PaymentStatus
+  billingType: BillingType
+  cart: Cart!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CreateOrderInput {
+  value: Float!
+  cartId: ID!
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  OVERDUE
+}
+
+enum BillingType {
+  BOLETO
+  PIX
+  CREDIT_CARD
+  DEBIT_CARD
+}
+
+extends type Query {
+  getOrder(id: ID!): Order
+  listOrders(userID: ID!): [Order!]
+}
+
+extends type Mutation {
+  createOrder(input: CreateOrderInput!): Order!
+  deleteOrder(id: ID!): Order!
+}
+
+extends type Subscription {
+  orderPaymentUpdate(orderId: ID!): Order
+}

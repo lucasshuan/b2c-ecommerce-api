@@ -6,7 +6,6 @@ import (
 
 type Order struct {
 	gorm.Model
-	Name           string `gorm:"unique"`
 	Value          float64
 	AsaasPaymentID string
 	CartID         uint

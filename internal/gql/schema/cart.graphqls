@@ -1,0 +1,40 @@
+type Cart {
+  id: ID!
+  isActive: Boolean!
+  value: Float!
+  user: User!
+  userId: ID
+  cart: Cart
+  products: [CartProduct!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CartProduct {
+  id: ID!
+  quantity: Int!
+  product: Product!
+}
+
+input CreateCartInput {
+  isActive: Boolean!
+  value: Float!
+  userId: ID!
+}
+
+input AddProductToCartInput {
+  cartId: ID!
+  productId: ID!
+  quantity: Int!
+}
+
+extends type Query {
+  getCart(id: ID!): Cart
+  listCarts(userID: ID!): [Cart]
+}
+
+extends type Mutation {
+  createCart(input: CreateCartInput!): Cart
+  addProductToCart(input: AddProductToCartInput!): CartProduct
+  removeProductFromCart(cartProductID: ID!): Cart
+}
