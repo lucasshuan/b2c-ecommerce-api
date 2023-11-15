@@ -1,6 +1,15 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type Query {
-  users: [User!]!
-  user(id: ID!): User
+  getUsers: [User!]!
+  getUser(id: ID!): User
 }
 
 input NewUser {
@@ -11,4 +20,9 @@ input NewUser {
 
 type Mutation {
   createUser(input: NewUser!): User!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
 }

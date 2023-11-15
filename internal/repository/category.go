@@ -1,8 +1,7 @@
 package repository
 
 import (
-	"multitenant_go_api/internal/model"
-
+	"github.com/nobeluc/ecommerce-api/internal/model"
 	"gorm.io/gorm"
 )
 
@@ -16,17 +15,17 @@ func NewCategoryRepository(db *gorm.DB) *CategoryRepository {
 	}
 }
 
-func (r *CategoryRepository) FindByID(id uint) (*model.Category, error) {
-	var category model.Category
-	if err := r.DB.First(&category, id).Error; err != nil {
+func (r *CategoryRepository) ListAllCategories() ([]*model.Category, error) {
+	var categories []*model.Category
+	if err := r.DB.Find(&categories).Error; err != nil {
 		return nil, err
 	}
-	return &category, nil
+	return categories, nil
 }
 
-func (r *CategoryRepository) Save(category *model.Category) error {
+func (r *CategoryRepository) SaveCategory(category *model.Category) error {
 	return r.DB.Save(category).Error
 }
-func (r *CategoryRepository) Delete(category *model.Category) error {
+func (r *CategoryRepository) DeleteCategory(category *model.Category) error {
 	return r.DB.Delete(category).Error
 }

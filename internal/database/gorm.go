@@ -1,14 +1,18 @@
 package database
 
 import (
-	"ecommerce_api/internal/model"
 	"fmt"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/nobeluc/ecommerce-api/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+)
+
+var (
+	Databases = make(map[string]*gorm.DB)
 )
 
 var (
@@ -16,8 +20,7 @@ var (
 		"company-01",
 		"company-02",
 	}
-	databases = make(map[string]*gorm.DB)
-	models    = []interface{}{
+	models = []interface{}{
 		&model.User{},
 		&model.Category{},
 		&model.Product{},
@@ -37,7 +40,7 @@ func Initialize() {
 		if err != nil {
 			log.Fatalf("failed to initialize database for tenant %s: %v", tenantID, err)
 		}
-		databases[tenantID] = db
+		Databases[tenantID] = db
 	}
 }
 

@@ -1,8 +1,7 @@
 package repository
 
 import (
-	"multitenant_go_api/internal/model"
-
+	"github.com/nobeluc/ecommerce-api/internal/model"
 	"gorm.io/gorm"
 )
 
@@ -16,7 +15,15 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 	}
 }
 
-func (r *UserRepository) FindByID(id uint) (*model.User, error) {
+func (r *UserRepository) ListAllUsers() ([]*model.User, error) {
+	var users []*model.User
+	if err := r.DB.Find(&users).Error; err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+func (r *UserRepository) FindUserById(id uint) (*model.User, error) {
 	var user model.User
 	if err := r.DB.First(&user, id).Error; err != nil {
 		return nil, err
@@ -24,10 +31,10 @@ func (r *UserRepository) FindByID(id uint) (*model.User, error) {
 	return &user, nil
 }
 
-func (r *UserRepository) Save(user *model.User) error {
+func (r *UserRepository) SaveUser(user *model.User) error {
 	return r.DB.Save(user).Error
 }
 
-func (r *UserRepository) Delete(user *model.User) error {
+func (r *UserRepository) DeleteUser(user *model.User) error {
 	return r.DB.Delete(user).Error
 }
