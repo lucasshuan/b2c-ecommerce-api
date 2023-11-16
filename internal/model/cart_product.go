@@ -8,7 +8,7 @@ type CartProduct struct {
 	gorm.Model
 	Quantity  uint
 	CartID    uint
-	ProductID uint
 	Cart      Cart
+	ProductID uint
 	Product   Product
 }

@@ -9,7 +9,7 @@ type Order struct {
 	Value          float64
 	AsaasPaymentID string
 	CartID         uint
-	UserID         uint
 	Cart           Cart
+	UserID         uint
 	User           User
 }

@@ -10,6 +10,6 @@ type User struct {
 	Email          string
 	HashedPassword string
 	PaymentID      string
-	Carts          []Cart
-	Orders         []Order
+	Carts          []*Cart
+	Orders         []*Order
 }

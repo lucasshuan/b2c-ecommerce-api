@@ -11,5 +11,4 @@ type Product struct {
 	Description string
 	CategoryID  uint
 	Category    Category
-	Carts       []Cart
 }

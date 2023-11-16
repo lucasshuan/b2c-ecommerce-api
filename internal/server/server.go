@@ -1,13 +1,12 @@
 package server
 
 import (
-	"log"
-
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gin-gonic/gin"
 	"github.com/nobeluc/ecommerce-api/internal/gql"
 	"github.com/nobeluc/ecommerce-api/internal/gql/resolvers"
+	"github.com/nobeluc/ecommerce-api/internal/logger"
 	"github.com/nobeluc/ecommerce-api/internal/middleware"
 	"github.com/nobeluc/ecommerce-api/internal/validation"
 	"gorm.io/gorm"
@@ -19,6 +18,7 @@ func graphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
 		db, ok := c.Get("db")
 		if !ok {
+			logger.Log.Error("db not found in context")
 			c.AbortWithStatus(500)
 			return
 		}
@@ -45,11 +45,12 @@ func playgroundHandler() gin.HandlerFunc {
 func Start() {
 	r := gin.Default()
 
+	r.Use(middleware.LoggingMiddleware())
 	r.Use(middleware.TenantMiddleware())
 
 	r.POST("/query", graphqlHandler())
 	r.GET("/", playgroundHandler())
 
-	log.Printf("Connect to http://localhost:%s for GraphQL playground", defaultPort)
+	logger.Log.Infof("connect to http://localhost:%s for GraphQL playground", defaultPort)
 	r.Run(":" + defaultPort)
 }

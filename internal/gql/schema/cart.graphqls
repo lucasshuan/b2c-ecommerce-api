@@ -1,4 +1,4 @@
-type Cart {
+type CartGQL {
   id: ID!
   isActive: Boolean!
   value: Float!
@@ -10,10 +10,12 @@ type Cart {
   updatedAt: Time!
 }
 
-type CartProduct {
+type CartProductGQL {
   id: ID!
   quantity: Int!
   product: Product!
+  createdAt: Time!
+  updatedAt: Time!
 }
 
 input CreateCartInput {

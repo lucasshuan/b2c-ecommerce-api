@@ -6,6 +6,6 @@ import (
 
 type Category struct {
 	gorm.Model
-	Name     string    `gorm:"unique"`
-	Products []Product `gorm:"ForeignKey:CategoryID"`
+	Name     string     `gorm:"unique"`
+	Products []*Product `gorm:"ForeignKey:CategoryID"`
 }
