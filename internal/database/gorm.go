@@ -31,12 +31,12 @@ func Initialize() {
 	for _, tenantID := range tenantIDsList {
 		dsn := os.Getenv(tenantID + "_MYSQL_DATABASE_URL")
 		if dsn == "" {
-			logger.Log.Fatalf("dsn not found for tenant: %s", tenantID)
+			logger.Log.Fatalf("DSN not found for tenant: %s", tenantID)
 		}
 
 		db, err := initializeGorm(dsn)
 		if err != nil {
-			logger.Log.Fatalf("failed to initialize database for tenant %s: %v", tenantID, err)
+			logger.Log.Fatalf("Failed to initialize database for tenant %s: %v", tenantID, err.Error())
 		}
 
 		Databases[tenantID] = db

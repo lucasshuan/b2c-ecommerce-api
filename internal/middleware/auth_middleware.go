@@ -6,6 +6,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/nobeluc/ecommerce-api/internal/logger"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
@@ -13,6 +14,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		authToken := c.GetHeader("Authorization")
 
 		if authToken == "" {
+			logger.Log.Error("authorization token required")
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization token required"})
 			c.Abort()
 			return
@@ -26,6 +28,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		})
 
 		if err != nil {
+			logger.Log.Error("invalid authorization token")
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid authorization token"})
 			c.Abort()
 			return
@@ -34,6 +37,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 			c.Set("userID", claims["user_id"])
 		} else {
+			logger.Log.Error("invalid authorization token")
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid authorization token"})
 			c.Abort()
 			return

@@ -8,6 +8,8 @@ import (
 	"github.com/nobeluc/ecommerce-api/internal/gql/resolvers"
 	"github.com/nobeluc/ecommerce-api/internal/logger"
 	"github.com/nobeluc/ecommerce-api/internal/middleware"
+	"github.com/nobeluc/ecommerce-api/internal/repository"
+	"github.com/nobeluc/ecommerce-api/internal/service"
 	"github.com/nobeluc/ecommerce-api/internal/validation"
 	"gorm.io/gorm"
 )
@@ -18,11 +20,13 @@ func graphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
 		db, ok := c.Get("db")
 		if !ok {
-			logger.Log.Error("db not found in context")
+			logger.Log.Error("DB not found in context")
 			c.AbortWithStatus(500)
 			return
 		}
-		resolver := *resolvers.NewResolver(db.(*gorm.DB))
+		resolver := resolvers.Resolver{
+			UserService: service.NewUserService(repository.NewUserRepository(db.(*gorm.DB))),
+		}
 		config := gql.Config{Resolvers: &resolver}
 
 		config.Directives.Length = validation.LengthDirective
@@ -51,6 +55,6 @@ func Start() {
 	r.POST("/query", graphqlHandler())
 	r.GET("/", playgroundHandler())
 
-	logger.Log.Infof("connect to http://localhost:%s for GraphQL playground", defaultPort)
+	logger.Log.Infof("Connect to http://localhost:%s for GraphQL playground", defaultPort)
 	r.Run(":" + defaultPort)
 }

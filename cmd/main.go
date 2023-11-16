@@ -9,11 +9,11 @@ import (
 
 func main() {
 	logger.Init()
-	logger.Log.Info("starting server...")
+	logger.Log.Info("Starting server...")
 
 	err := godotenv.Load()
 	if err != nil {
-		logger.Log.Fatalf("failed to load .env file: %v", err)
+		logger.Log.Fatalf("Failed to load .env file: %v", err)
 	}
 
 	database.Initialize()

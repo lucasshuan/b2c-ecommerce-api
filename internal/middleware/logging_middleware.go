@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -12,19 +13,18 @@ func LoggingMiddleware() gin.HandlerFunc {
 
 		startTime := time.Now()
 
+		ctx.Next()
 		endTime := time.Now()
-		latencyTime := endTime.Sub(startTime)
+		latencyTime := fmt.Sprintf("%dms", endTime.Sub(startTime).Milliseconds())
 		reqMethod := ctx.Request.Method
 		reqUri := ctx.Request.RequestURI
-		clientIP := ctx.ClientIP()
 
-		ctx.Next()
-
-		logger.Log.Info("HTTP",
-			"METHOD", reqMethod,
-			"URI", reqUri,
-			"LATENCY", latencyTime,
-			"CLIENT_IP", clientIP,
+		logger.Log.Info("Handled HTTP request:",
+			"host", ctx.Request.Host,
+			"method", reqMethod,
+			"uri", reqUri,
+			"status", ctx.Writer.Status(),
+			"ping", latencyTime,
 		)
 	}
 }

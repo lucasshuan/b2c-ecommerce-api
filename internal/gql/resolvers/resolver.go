@@ -7,11 +7,11 @@ import (
 )
 
 type Resolver struct {
-	userService *service.UserService
+	UserService *service.UserService
 }
 
 func NewResolver(db *gorm.DB) *Resolver {
 	return &Resolver{
-		userService: service.NewUserService(repository.NewUserRepository(db)),
+		UserService: service.NewUserService(repository.NewUserRepository(db)),
 	}
 }

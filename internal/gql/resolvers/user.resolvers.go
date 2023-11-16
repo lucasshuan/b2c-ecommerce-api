@@ -25,7 +25,7 @@ func (r *mutationResolver) RegisterUser(ctx context.Context, input gql.CreateUse
 		Email: input.Email,
 	}
 
-	err := r.userService.CreateUser(user, input.Password)
+	err := r.UserService.CreateUser(user, input.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (r *queryResolver) User(ctx context.Context, id string) (*gql.User, error) 
 		return nil, err
 	}
 
-	user, err := r.userService.FindUserByID(uint(userID))
+	user, err := r.UserService.FindUserByID(uint(userID))
 	if err != nil {
 		return nil, err
 	}
