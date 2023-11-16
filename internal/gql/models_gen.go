@@ -28,9 +28,11 @@ type Cart struct {
 }
 
 type CartProduct struct {
-	ID       string   `json:"id"`
-	Quantity int      `json:"quantity"`
-	Product  *Product `json:"product"`
+	ID        string    `json:"id"`
+	Quantity  int       `json:"quantity"`
+	Product   *Product  `json:"product"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 type Category struct {

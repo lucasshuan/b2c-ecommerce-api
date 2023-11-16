@@ -26,12 +26,25 @@ func (r *mutationResolver) RemoveProductFromCart(ctx context.Context, cartProduc
 	panic(fmt.Errorf("not implemented: RemoveProductFromCart - removeProductFromCart"))
 }
 
-// GetCart is the resolver for the getCart field.
+// Cart is the resolver for the cart field.
+func (r *queryResolver) Cart(ctx context.Context, id string) (*gql.Cart, error) {
+	panic(fmt.Errorf("not implemented: Cart - cart"))
+}
+
+// Carts is the resolver for the carts field.
+func (r *queryResolver) Carts(ctx context.Context, userID string) ([]*gql.Cart, error) {
+	panic(fmt.Errorf("not implemented: Carts - carts"))
+}
+
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//     it when you're done.
+//   - You have helper methods in this file. Move them out to keep these resolver files clean.
 func (r *queryResolver) GetCart(ctx context.Context, id string) (*gql.Cart, error) {
 	panic(fmt.Errorf("not implemented: GetCart - getCart"))
 }
-
-// ListCarts is the resolver for the listCarts field.
 func (r *queryResolver) ListCarts(ctx context.Context, userID string) ([]*gql.Cart, error) {
 	panic(fmt.Errorf("not implemented: ListCarts - listCarts"))
 }

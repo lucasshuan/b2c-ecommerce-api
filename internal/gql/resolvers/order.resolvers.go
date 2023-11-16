@@ -21,17 +21,30 @@ func (r *mutationResolver) DeleteOrder(ctx context.Context, id string) (*gql.Ord
 	panic(fmt.Errorf("not implemented: DeleteOrder - deleteOrder"))
 }
 
-// GetOrder is the resolver for the getOrder field.
-func (r *queryResolver) GetOrder(ctx context.Context, id string) (*gql.Order, error) {
-	panic(fmt.Errorf("not implemented: GetOrder - getOrder"))
+// Order is the resolver for the order field.
+func (r *queryResolver) Order(ctx context.Context, id string) (*gql.Order, error) {
+	panic(fmt.Errorf("not implemented: Order - order"))
 }
 
-// ListOrders is the resolver for the listOrders field.
-func (r *queryResolver) ListOrders(ctx context.Context, userID string) ([]*gql.Order, error) {
-	panic(fmt.Errorf("not implemented: ListOrders - listOrders"))
+// Orders is the resolver for the orders field.
+func (r *queryResolver) Orders(ctx context.Context, userID string) ([]*gql.Order, error) {
+	panic(fmt.Errorf("not implemented: Orders - orders"))
 }
 
 // OrderPaymentUpdate is the resolver for the orderPaymentUpdate field.
 func (r *subscriptionResolver) OrderPaymentUpdate(ctx context.Context, orderID string) (<-chan *gql.Order, error) {
 	panic(fmt.Errorf("not implemented: OrderPaymentUpdate - orderPaymentUpdate"))
+}
+
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//     it when you're done.
+//   - You have helper methods in this file. Move them out to keep these resolver files clean.
+func (r *queryResolver) GetOrder(ctx context.Context, id string) (*gql.Order, error) {
+	panic(fmt.Errorf("not implemented: GetOrder - getOrder"))
+}
+func (r *queryResolver) ListOrders(ctx context.Context, userID string) ([]*gql.Order, error) {
+	panic(fmt.Errorf("not implemented: ListOrders - listOrders"))
 }

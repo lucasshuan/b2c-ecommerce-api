@@ -16,8 +16,8 @@ input UpdateCategoryInput {
 }
 
 extend type Query {
-  getCategory(id: ID!): Category
-  listCategories: [Category!]
+  category(id: ID!): Category
+  categories: [Category!]
 }
 
 extend type Mutation {

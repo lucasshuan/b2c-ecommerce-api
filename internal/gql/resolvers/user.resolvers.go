@@ -49,8 +49,8 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, err
 	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
 }
 
-// GetUser is the resolver for the getUser field.
-func (r *queryResolver) GetUser(ctx context.Context, id string) (*gql.User, error) {
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context, id string) (*gql.User, error) {
 	userID, err := strconv.Atoi(id)
 	if err != nil {
 		return nil, err
@@ -70,7 +70,7 @@ func (r *queryResolver) GetUser(ctx context.Context, id string) (*gql.User, erro
 	}, nil
 }
 
-// ListUsers is the resolver for the listUsers field.
-func (r *queryResolver) ListUsers(ctx context.Context) ([]*gql.User, error) {
-	panic(fmt.Errorf("not implemented: ListUsers - listUsers"))
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*gql.User, error) {
+	panic(fmt.Errorf("not implemented: Users - users"))
 }

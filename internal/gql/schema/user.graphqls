@@ -28,8 +28,8 @@ input LoginInput {
 }
 
 extend type Query {
-  getUser(id: ID!): User
-  listUsers: [User!]
+  user(id: ID!): User
+  users: [User!]
 }
 
 extend type Mutation {

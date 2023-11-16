@@ -31,8 +31,8 @@ enum BillingType {
 }
 
 extend type Query {
-  getOrder(id: ID!): Order
-  listOrders(userID: ID!): [Order!]
+  order(id: ID!): Order
+  orders(userID: ID!): [Order!]
 }
 
 extend type Mutation {

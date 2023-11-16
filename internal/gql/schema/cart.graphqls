@@ -1,4 +1,4 @@
-type CartGQL {
+type Cart {
   id: ID!
   isActive: Boolean!
   value: Float!
@@ -10,7 +10,7 @@ type CartGQL {
   updatedAt: Time!
 }
 
-type CartProductGQL {
+type CartProduct {
   id: ID!
   quantity: Int!
   product: Product!
@@ -31,8 +31,8 @@ input AddProductToCartInput {
 }
 
 extend type Query {
-  getCart(id: ID!): Cart
-  listCarts(userID: ID!): [Cart]
+  cart(id: ID!): Cart
+  carts(userID: ID!): [Cart]
 }
 
 extend type Mutation {

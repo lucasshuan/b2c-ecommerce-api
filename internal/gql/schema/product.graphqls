@@ -38,8 +38,8 @@ enum SortDirection {
 }
 
 extend type Query {
-  getProduct(id: ID!): Product
-  listProducts(input: ListProductsInput): [Product!]
+  product(id: ID!): Product
+  products(input: ListProductsInput): [Product!]
 }
 
 extend type Mutation {
