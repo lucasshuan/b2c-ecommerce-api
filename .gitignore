@@ -34,6 +34,10 @@ models/
 *.log
 debug/
 
+# Ignore environment files
+# *.env
+# env/
+
 # Ignore compiled output
 /bin/
 /build/

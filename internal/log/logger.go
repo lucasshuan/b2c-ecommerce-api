@@ -1,4 +1,4 @@
-package logger
+package log
 
 import (
 	"os"
@@ -7,14 +7,14 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-var Log *log.Logger
+var AppLogger *log.Logger
 
 func Init() {
-	Log = log.NewWithOptions(os.Stderr, log.Options{
+	AppLogger = log.NewWithOptions(os.Stderr, log.Options{
 		Prefix:          "\x1b[94m[api]",
 		ReportTimestamp: true,
 		TimeFormat:      time.Kitchen,
 	})
-	Log.SetLevel(log.DebugLevel)
+	AppLogger.SetLevel(log.DebugLevel)
 	replaceGinWriter()
 }

@@ -1,4 +1,4 @@
-package logger
+package log
 
 import (
 	"strings"
@@ -70,7 +70,7 @@ func deleteGinPrefix(str *string) string {
 
 func replaceGinWriter() {
 	customWriter := &CustomGinWriter{
-		logger: Log.WithPrefix("[gin]"),
+		logger: AppLogger.WithPrefix("[gin]"),
 	}
 
 	gin.DefaultWriter = customWriter

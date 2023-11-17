@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/nobeluc/ecommerce-api/internal/logger"
+	"github.com/nobeluc/ecommerce-api/internal/log"
 )
 
 func LoggingMiddleware() gin.HandlerFunc {
@@ -19,7 +19,7 @@ func LoggingMiddleware() gin.HandlerFunc {
 		reqMethod := ctx.Request.Method
 		reqUri := ctx.Request.RequestURI
 
-		logger.Log.Info("Handled HTTP request:",
+		log.AppLogger.Info("Handled HTTP request:",
 			"host", ctx.Request.Host,
 			"method", reqMethod,
 			"uri", reqUri,

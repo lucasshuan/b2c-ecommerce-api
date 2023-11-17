@@ -1,0 +1,7 @@
+dev:
+  port: 8080
+  tenants: 
+    - database_urL: mysql://user:password@localhost:3400/ecommerce_db
+      id: company1
+    - database_urL: postgres://user:password@localhost:3401/ecommerce_db
+      id: company2
