@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mysql:
-    container_name: company-01
+    container_name: db_company1
     image: mysql
     restart: always
     command: --default-authentication-plugin=mysql_native_password
