@@ -1,0 +1,16 @@
+_id: env_023b5fd602e5434cb3907e47141d4fdf
+type: Environment
+parentId: env_d3635b2644caa260f6a8f696343bb31320490717
+modified: 1700191092270
+created: 1700136853041
+name: Local
+data:
+  graphqlUrl: http://localhost:8080/graphql
+  playgroundUrl: http://localhost:8080/
+dataPropertyOrder:
+  "&":
+    - graphqlUrl
+    - playgroundUrl
+color: null
+isPrivate: false
+metaSortKey: 1700136853045

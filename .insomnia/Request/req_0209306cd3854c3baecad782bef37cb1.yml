@@ -1,0 +1,29 @@
+_id: req_0209306cd3854c3baecad782bef37cb1
+type: Request
+parentId: fld_7db74ffa755e4bfd8626791e859b6803
+modified: 1700191265642
+created: 1700191158187
+url: "{{ _.graphqlUrl }}"
+name: registerUser
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"mutation RegisterUser($createUserInput: CreateUserInput!)
+    {\n\tregisterUser(input: $createUserInput)
+    {\n\t\tid\n\t\tname\n\t\temail\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}","operationName":"RegisterUser","variables":{"createUserInput":{"name":"teste","email":"teste@teste.com","password":"teste"}}}'
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1700191158187
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
