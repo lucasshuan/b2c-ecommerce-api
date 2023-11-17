@@ -1,0 +1,38 @@
+_id: req_3a93d466e62d4254972c59dbef20306c
+type: Request
+parentId: fld_b7f1c5707ec5480fbfa21fc818082805
+modified: 1700191259370
+created: 1700136973167
+url: "{{ _.graphqlUrl }}"
+name: user
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"query User($id: ID!) {\n\tuser(id: $id)
+    {\n\t\tid\n\t\tname\n\t\temail\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}","operationName":"User","variables":{"id":"1"}}'
+parameters:
+  - id: pair_a0a05566c69e47f49024ab78a7255f57
+    name: ""
+    value: ""
+    description: ""
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+    id: pair_e08e17d812c54c378450ee057f00f6f6
+  - name: Content-Type
+    value: application/json
+    id: pair_b2fd1945ffd64c138046e7332f23ec1d
+  - id: pair_1ab8e76d479a49469d39dd910d1af58e
+    name: X-Tenant-ID
+    value: COMPANY-01
+    description: ""
+authentication: {}
+metaSortKey: -1700186786329
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

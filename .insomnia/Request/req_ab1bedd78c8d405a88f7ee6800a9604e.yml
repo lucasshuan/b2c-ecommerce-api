@@ -1,0 +1,28 @@
+_id: req_ab1bedd78c8d405a88f7ee6800a9604e
+type: Request
+parentId: fld_b7f1c5707ec5480fbfa21fc818082805
+modified: 1700191247379
+created: 1700186884359
+url: "{{ _.graphqlUrl }}"
+name: users
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"query Users($id: ID!) {\n\tusers(id: $id)
+    {\n\t\tid\n\t\tname\n\t\temail\n\t\tcreatedAt\n\t\tupdatedAt\n\t}\n}","operationName":"Users"}'
+parameters: []
+headers:
+  - name: User-Agent
+    value: Insomnia/2023.5.7
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1700186786229
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
