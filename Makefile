@@ -1,13 +1,10 @@
-dev:
-	@echo "Running server locally..."
+server:
+	@echo "Running server..."
 	go run cmd/main.go
 
-prod:
-	@echo "Running server in production..."
-	go run cmd/main.go
-
-docker:
+compose:
 	@echo "Running Docker containers..."
-	@for compose_file in ./configs/docker/*.yml; do \
-		docker-compose -p ecommerce-api -f "$$compose_file" up -d; \
+	@for compose_dir in ./docker/*/compose.yml; do \
+		project_name=$$(basename $$(dirname "$$compose_dir")); \
+		docker-compose -p $$project_name -f "$$compose_dir" up -d; \
 	done

@@ -20,6 +20,7 @@ func Init(c *configs.AppConfig) {
 		&model.Order{},
 		&model.Cart{},
 	}
+
 	for _, tenant := range c.Tenants {
 		parsedURL, err := url.Parse(tenant.DatabaseURL)
 		if err != nil {

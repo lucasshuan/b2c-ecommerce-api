@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func getDb(c *gin.Context) *gorm.DB {
+func fetchDatabaseFromContext(c *gin.Context) *gorm.DB {
 	tenantId := c.GetHeader("X-Tenant-Id")
 	if tenantId == "" {
 		return nil
@@ -22,7 +22,7 @@ func getDb(c *gin.Context) *gorm.DB {
 
 func GraphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
-		db := getDb(c)
+		db := fetchDatabaseFromContext(c)
 		if db == nil {
 			log.AppLogger.Error("Database not found")
 			c.AbortWithStatus(500)

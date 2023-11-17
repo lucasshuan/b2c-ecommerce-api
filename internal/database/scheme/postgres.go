@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -19,19 +19,21 @@ func NewPostgres(url *url.URL) *Postgres {
 }
 
 func (s *Postgres) GetDialector() gorm.Dialector {
-	return mysql.New(mysql.Config{
+	return postgres.New(postgres.Config{
 		DSN: s.getDSN(),
 	})
 }
 
 func (s *Postgres) getDSN() string {
 	password, _ := s.url.User.Password()
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=UTC",
+
+	// user=%[1]s password=%[2]s dbname=%[3]s sslmode=require host=%[4]s port=%[5]s
+	dsn := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=require host=%s port=%s",
 		s.url.User.Username(),
 		password,
+		s.url.Path[1:],
 		s.url.Hostname(),
 		s.url.Port(),
-		s.url.Path[1:], // Remove the leading '/'
 	)
 	return dsn
 }

@@ -20,7 +20,7 @@ func NewDBManager(url *url.URL, models ...interface{}) *DBManager {
 }
 
 func (d *DBManager) GetDB() (*gorm.DB, error) {
-	dialector := d.getScheme().GetDialector()
+	dialector := d.getDBScheme().GetDialector()
 	db, err := gorm.Open(dialector)
 	if err != nil {
 		return nil, err
@@ -34,14 +34,13 @@ func (d *DBManager) GetDB() (*gorm.DB, error) {
 	return db, nil
 }
 
-func (d *DBManager) getScheme() scheme.DBScheme {
+func (d *DBManager) getDBScheme() scheme.DBScheme {
 	switch d.url.Scheme {
 	case "mysql":
 		return scheme.NewMySQL(d.url)
 	case "postgres":
 		return scheme.NewPostgres(d.url)
-	case "sqlite":
-		return scheme.NewSQLite(d.url)
+	default:
+		return nil
 	}
-	return nil
 }

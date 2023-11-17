@@ -26,12 +26,12 @@ func (s *MySQL) GetDialector() gorm.Dialector {
 
 func (s *MySQL) getDSN() string {
 	password, _ := s.url.User.Password()
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	// user:password@tcp(host:port)
+	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		s.url.User.Username(),
 		password,
 		s.url.Hostname(),
 		s.url.Port(),
-		s.url.Path[1:], // Remove the leading '/'
+		s.url.Path[1:],
 	)
-	return dsn
 }
