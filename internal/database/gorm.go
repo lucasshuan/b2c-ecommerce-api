@@ -1,6 +1,8 @@
 package database
 
 import (
+	"net/url"
+
 	"github.com/nobeluc/ecommerce-api/configs"
 	"github.com/nobeluc/ecommerce-api/internal/log"
 	"github.com/nobeluc/ecommerce-api/internal/model"
@@ -19,10 +21,15 @@ func Init(c *configs.AppConfig) {
 		&model.Cart{},
 	}
 	for _, tenant := range c.Tenants {
-		db, err := NewDatabase(tenant.DatabaseURL, models...)
+		parsedURL, err := url.Parse(tenant.DatabaseURL)
 		if err != nil {
-			log.AppLogger.Fatal(err)
+			log.AppLogger.Fatalf("failed to parse database url: %v", err)
 		}
-		Databases[tenant.ID] = db.DB
+		dm := NewDBManager(parsedURL, models...)
+		db, err := dm.GetDB()
+		if err != nil {
+			log.AppLogger.Fatalf("failed to connect to database: %v", err)
+		}
+		Databases[tenant.ID] = db
 	}
 }
