@@ -1,10 +1,8 @@
 package configs
 
 import (
-	"os"
 	"strings"
 
-	"github.com/joho/godotenv"
 	"github.com/nobeluc/ecommerce-api/internal/log"
 	"github.com/spf13/viper"
 )
@@ -20,10 +18,9 @@ type AppConfig struct {
 }
 
 func Load() *AppConfig {
-	godotenv.Load(".env")
-	env := os.Getenv("ENV")
+	env := viper.GetString("env")
 	if env == "" {
-		env = "dev" // Default to development environment
+		env = "dev"
 	}
 
 	viper.SetEnvPrefix(env)

@@ -1,3 +1,4 @@
+env: 'dev'
 dev:
   port: 8080
   tenants: 
