@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  company2:
+    container_name: company2
+    image: postgres
+    restart: always
+    volumes: 
+      - postgres_data:/var/lib/postgresql
+    env_file: 
+      - ../env/company2.env
+    ports:
+      - 3401:3401
+
+volumes:
+  postgres_data:
