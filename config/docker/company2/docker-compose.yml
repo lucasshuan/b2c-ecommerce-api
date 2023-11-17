@@ -2,14 +2,12 @@ version: '3.8'
 services:
   mysql:
     container_name: company-02
-    image: mysql
+    image: postgres
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: test
-      MYSQL_DATABASE: default_schema
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
-      MYSQL_TCP_PORT: 3401
+      POSTGRES_DB: ${ROOT_PASSWORD}
+      POSTGRES_USER: ${DATABASE}
+      POSTGRES_PASSWORD: ${USER}
     ports:
-      - 3401:3401
+      - "${EXTERNAL_PORT}:${TCP_PORT}"

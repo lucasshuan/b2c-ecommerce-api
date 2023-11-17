@@ -40,6 +40,7 @@ func Initialize() {
 		}
 
 		Databases[tenantID] = db
+		println(Databases[tenantID])
 	}
 }
 

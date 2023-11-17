@@ -1,16 +1,38 @@
+"""
+Root query type representing all entry points into the API.
+"""
 type Query
 
+"""
+Root mutation type representing all entry points for modifying data in the API.
+"""
 type Mutation
 
+"""
+Root subscription type representing all entry points for subscribing to real-time updates in the API.
+"""
 type Subscription
 
+"""
+Entry point of the API, defining available operations and return types.
+"""
 schema {
   query: Query
   mutation: Mutation
   subscription: Subscription
 }
 
+"""
+Scalar type representing a point in time.
+"""
 scalar Time
 
-directive @length(min: Int, max: Int) on FIELD_DEFINITION
-directive @email on FIELD_DEFINITION
+"""
+Custom directive to specify a length constraint on a field.
+"""
+directive @length(min: Int, max: Int) on INPUT_FIELD_DEFINITION
+
+"""
+Custom directive to validate a field value as an email address.
+"""
+directive @email on INPUT_FIELD_DEFINITION

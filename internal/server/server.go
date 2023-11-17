@@ -4,33 +4,37 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gin-gonic/gin"
+	"github.com/nobeluc/ecommerce-api/internal/database"
 	"github.com/nobeluc/ecommerce-api/internal/gql"
 	"github.com/nobeluc/ecommerce-api/internal/gql/resolvers"
 	"github.com/nobeluc/ecommerce-api/internal/logger"
-	"github.com/nobeluc/ecommerce-api/internal/middleware"
-	"github.com/nobeluc/ecommerce-api/internal/repository"
-	"github.com/nobeluc/ecommerce-api/internal/service"
 	"github.com/nobeluc/ecommerce-api/internal/validation"
-	"gorm.io/gorm"
 )
 
 const defaultPort = "8080"
 
 func graphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
-		db, ok := c.Get("db")
-		if !ok {
-			logger.Log.Error("DB not found in context")
+		// db, ok := c.Get("db")
+		// if !ok {
+		// 	logger.Log.Error("DB not found in context")
+		// 	c.AbortWithStatus(500)
+		// 	return
+		// }
+		db := database.Databases["COMPANY_01"]
+		if db == nil {
+			logger.Log.Error("DB not found")
 			c.AbortWithStatus(500)
 			return
 		}
-		resolver := resolvers.Resolver{
-			UserService: service.NewUserService(repository.NewUserRepository(db.(*gorm.DB))),
+		resolver := resolvers.NewResolver(db)
+		config := gql.Config{
+			Resolvers: resolver,
+			Directives: gql.DirectiveRoot{
+				Length: validation.LengthDirective,
+				Email:  validation.EmailDirective,
+			},
 		}
-		config := gql.Config{Resolvers: &resolver}
-
-		config.Directives.Length = validation.LengthDirective
-		config.Directives.Email = validation.EmailDirective
 
 		h := handler.NewDefaultServer(gql.NewExecutableSchema(config))
 
@@ -49,10 +53,7 @@ func playgroundHandler() gin.HandlerFunc {
 func Start() {
 	r := gin.Default()
 
-	r.Use(middleware.LoggingMiddleware())
-	r.Use(middleware.TenantMiddleware())
-
-	r.POST("/query", graphqlHandler())
+	r.POST("/graphql", graphqlHandler())
 	r.GET("/", playgroundHandler())
 
 	logger.Log.Infof("Connect to http://localhost:%s for GraphQL playground", defaultPort)

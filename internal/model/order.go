@@ -11,5 +11,5 @@ type Order struct {
 	CartID         uint
 	Cart           Cart
 	UserID         uint
-	User           User
+	User           User	
 }
