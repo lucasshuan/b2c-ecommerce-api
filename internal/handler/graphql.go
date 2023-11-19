@@ -8,24 +8,20 @@ import (
 	"github.com/nobeluc/ecommerce-api/internal/gql/resolvers"
 	"github.com/nobeluc/ecommerce-api/internal/log"
 	"github.com/nobeluc/ecommerce-api/internal/validation"
-	"gorm.io/gorm"
 )
-
-func fetchDatabaseFromContext(c *gin.Context) *gorm.DB {
-	tenantId := c.GetHeader("X-Tenant-Id")
-	if tenantId == "" {
-		return nil
-	}
-	db := database.Databases[tenantId]
-	return db
-}
 
 func GraphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
-		db := fetchDatabaseFromContext(c)
+		tenantID := c.Param("tenantID")
+		if tenantID == "" {
+			log.AppLogger.Error("TenantID not found in context")
+			c.Abort()
+			return
+		}
+		db := database.Databases[tenantID]
 		if db == nil {
-			log.AppLogger.Error("Database not found")
-			c.AbortWithStatus(500)
+			log.AppLogger.Error("Database not found for tenantID: %s", tenantID)
+			c.Abort()
 			return
 		}
 		resolver := resolvers.NewResolver(db)

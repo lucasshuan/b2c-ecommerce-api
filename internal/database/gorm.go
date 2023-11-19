@@ -22,15 +22,27 @@ func Init(c *configs.AppConfig) {
 	}
 
 	for _, tenant := range c.Tenants {
+		if tenant.DatabaseURL == "" {
+			log.AppLogger.Fatalf("Database url is empty")
+		}
+
+		log.AppLogger.Debugf("Connecting to database: %s", tenant.ID)
+
 		parsedURL, err := url.Parse(tenant.DatabaseURL)
 		if err != nil {
-			log.AppLogger.Fatalf("failed to parse database url: %v", err)
+			log.AppLogger.Fatalf("Failed to parse database url: %v", err)
 		}
+
 		dm := NewDBManager(parsedURL, models...)
 		db, err := dm.GetDB()
 		if err != nil {
-			log.AppLogger.Fatalf("failed to connect to database: %v", err)
+			log.AppLogger.Fatalf("Failed to connect to database: %v", err)
 		}
+
 		Databases[tenant.ID] = db
+	}
+
+	if len(Databases) == 0 {
+		log.AppLogger.Fatalf("No database found")
 	}
 }

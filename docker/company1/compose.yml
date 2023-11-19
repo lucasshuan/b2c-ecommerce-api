@@ -5,7 +5,7 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     volumes: 
-      - company1_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
       MYSQL_DATABASE: ${DATABASE}
@@ -16,4 +16,4 @@ services:
       - ${PORT}:${PORT}
 
 volumes:
-  company1_data:
+  mysql_data:

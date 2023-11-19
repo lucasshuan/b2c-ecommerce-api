@@ -6,10 +6,12 @@ import (
 
 type User struct {
 	gorm.Model
-	Name           string `gorm:"unique"`
-	Email          string
-	HashedPassword string
-	PaymentID      string
-	Carts          []*Cart
-	Orders         []*Order
+	Name              string `gorm:"unique"`
+	Email             string
+	HashedPassword    string
+	OAuthProvider     string
+	OAuthAccessToken  string
+	OAuthRefreshToken string
+	Carts             []*Cart
+	Orders            []*Order
 }

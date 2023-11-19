@@ -7,8 +7,8 @@ type User {
   email: String!
   cart: [Cart!]
   orders: [Order!]
-  createdAt: Time!
-  updatedAt: Time!
+  created_at: Time!
+  updated_at: Time!
 }
 
 input CreateUserInput {
@@ -21,8 +21,6 @@ input UpdateUserInput {
   id: ID!
   name: String @length(min: 6, max: 32)
   email: String @email
-  newPassword: String
-  confirmPassword: String!
 }
 
 input LoginInput {
@@ -36,8 +34,9 @@ extend type Query {
 }
 
 extend type Mutation {
-  login(LoginInput: LoginInput!): User
-  registerUser(input: CreateUserInput!): User
+  createUser(input: CreateUserInput!): User
   updateUser(input: UpdateUserInput!): User
   deleteUser(id: ID!): Boolean!
+
+  associateGoogleAccount(token: String!): User
 }

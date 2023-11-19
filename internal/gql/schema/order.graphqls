@@ -8,8 +8,8 @@ type Order {
   billingType: BillingType
   cart: Cart!
   user: User!
-  createdAt: Time!
-  updatedAt: Time!
+  created_at: Time!
+  updated_at: Time!
 }
 
 input CreateOrderInput {

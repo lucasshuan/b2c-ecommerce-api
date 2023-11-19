@@ -1,8 +1,6 @@
 package configs
 
 import (
-	"strings"
-
 	"github.com/nobeluc/ecommerce-api/internal/log"
 	"github.com/spf13/viper"
 )
@@ -18,35 +16,40 @@ type AppConfig struct {
 }
 
 func Load() *AppConfig {
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	viper.SetConfigType("yml")
+
+	if err := viper.ReadInConfig(); err != nil {
+		log.AppLogger.Fatalf("Failed to read configuration file: %v", err)
+	}
+
 	env := viper.GetString("env")
 	if env == "" {
 		env = "dev"
 	}
 
-	viper.SetEnvPrefix(env)
-	viper.AutomaticEnv()
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-
-	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
-	viper.SetConfigType("yaml")
-
-	err := viper.ReadInConfig()
-	if err != nil {
-		log.AppLogger.Fatalf("Failed to read configuration file: %v", err)
-	}
-
-	var config = AppConfig{}
+	var config = &AppConfig{}
 
 	switch env {
 	case "dev", "prod":
-		config.Port = viper.GetString("port")
-		viper.UnmarshalKey("tenants", &config.Tenants)
+		config.Port = viper.GetString(env + ".port")
+		if config.Port == "" {
+			config.Port = "8080"
+		}
+
+		tenantsMap := make(map[string]string)
+		if err := viper.UnmarshalKey(env+".tenants", &tenantsMap); err != nil {
+			log.AppLogger.Fatalf("Failed to unmarshal tenants: %v", err)
+		}
+		for id, databaseURL := range tenantsMap {
+			config.Tenants = append(config.Tenants, Tenant{ID: id, DatabaseURL: databaseURL})
+		}
 	default:
 		log.AppLogger.Fatalf("Unknown environment: %s", env)
 	}
 
-	log.AppLogger.Infof("Using %s environment configuration\n", env)
+	log.AppLogger.Infof("Using %s environment configuration", env)
 
-	return &config
+	return config
 }

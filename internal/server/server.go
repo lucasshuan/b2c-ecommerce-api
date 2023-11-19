@@ -8,16 +8,17 @@ import (
 	"github.com/nobeluc/ecommerce-api/internal/middleware"
 )
 
-const defaultPort = "8080"
-
 func Init(c *configs.AppConfig) {
 	r := gin.Default()
-
 	r.Use(middleware.LoggingMiddleware())
+	registerRoutes(r)
 
-	r.POST("/graphql", handler.GraphqlHandler())
-	r.GET("/", handler.PlaygroundHandler())
+	if err := r.Run(":" + c.Port); err != nil {
+		log.AppLogger.Fatalf("Failed to start server: %v", err)
+	}
+}
 
-	log.AppLogger.Infof("Connect to http://localhost:%s for GraphQL playground", defaultPort)
-	r.Run(":" + c.Port)
+func registerRoutes(r *gin.Engine) {
+	r.POST("/:tenantID/graphql", handler.GraphqlHandler())
+	r.GET("/:tenantID/playground", handler.PlaygroundHandler())
 }

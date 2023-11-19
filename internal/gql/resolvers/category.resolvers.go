@@ -35,16 +35,3 @@ func (r *queryResolver) Category(ctx context.Context, id string) (*gql.Category,
 func (r *queryResolver) Categories(ctx context.Context) ([]*gql.Category, error) {
 	panic(fmt.Errorf("not implemented: Categories - categories"))
 }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//     it when you're done.
-//   - You have helper methods in this file. Move them out to keep these resolver files clean.
-func (r *queryResolver) GetCategory(ctx context.Context, id string) (*gql.Category, error) {
-	panic(fmt.Errorf("not implemented: GetCategory - getCategory"))
-}
-func (r *queryResolver) ListCategories(ctx context.Context) ([]*gql.Category, error) {
-	panic(fmt.Errorf("not implemented: ListCategories - listCategories"))
-}

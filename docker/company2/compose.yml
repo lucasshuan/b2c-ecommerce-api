@@ -3,14 +3,16 @@ services:
   db:
     image: postgres
     restart: always
-    volumes: 
-      - company2_data:/var/lib/postgresql
     environment:
       POSTGRES_USER: ${USER}
       POSTGRES_PASSWORD: ${PASSWORD}
       POSTGRES_DB: ${DATABASE}
+      PGPORT: ${PORT}
+      SSL_MODE: disable
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - ${PORT}:${PORT}
 
 volumes:
-  company2_data:
+  postgres_data:

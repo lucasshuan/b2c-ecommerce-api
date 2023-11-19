@@ -2,7 +2,6 @@ package log
 
 import (
 	"os"
-	"time"
 
 	"github.com/charmbracelet/log"
 )
@@ -13,7 +12,7 @@ func Init() {
 	AppLogger = log.NewWithOptions(os.Stderr, log.Options{
 		Prefix:          "\x1b[94m[api]",
 		ReportTimestamp: true,
-		TimeFormat:      time.Kitchen,
+		TimeFormat:      "01/02 15:04:05",
 	})
 	AppLogger.SetLevel(log.DebugLevel)
 	replaceGinWriter()

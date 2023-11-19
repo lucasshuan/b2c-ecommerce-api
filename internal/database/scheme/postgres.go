@@ -20,20 +20,20 @@ func NewPostgres(url *url.URL) *Postgres {
 
 func (s *Postgres) GetDialector() gorm.Dialector {
 	return postgres.New(postgres.Config{
-		DSN: s.getDSN(),
+		DSN:                  s.getDSN(),
+		PreferSimpleProtocol: true,
 	})
 }
 
 func (s *Postgres) getDSN() string {
 	password, _ := s.url.User.Password()
 
-	// user=%[1]s password=%[2]s dbname=%[3]s sslmode=require host=%[4]s port=%[5]s
-	dsn := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=require host=%s port=%s",
+	// host=%[1]s user=%[2]s password=%[3]s dbname=%[4]s port=%[5]s sslmode=disable TimeZone=UTC
+	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=UTC",
+		s.url.Hostname(),
 		s.url.User.Username(),
 		password,
 		s.url.Path[1:],
-		s.url.Hostname(),
 		s.url.Port(),
 	)
-	return dsn
 }

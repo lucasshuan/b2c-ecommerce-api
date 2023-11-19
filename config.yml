@@ -1,8 +1,6 @@
-env: 'dev'
+env: dev
 dev:
-  port: 8080
+  port: 3000
   tenants: 
-    - database_urL: mysql://user:password@localhost:3400/ecommerce_db
-      id: company1
-    - database_urL: postgres://user:password@localhost:3401/ecommerce_db
-      id: company2
+    company1: mysql://user:password@localhost:3401/ecommerce_db
+    company2: postgres://user:password@localhost:3402/ecommerce_db

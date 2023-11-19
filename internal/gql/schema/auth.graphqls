@@ -1,0 +1,16 @@
+#import "user.graphqls"
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+extend type Mutation {
+  changePassword(newPassword: String!, confirmPassword: String!): Boolean!
+
+  signIn(LoginInput: LoginInput!): AuthPayload
+  signUp(input: CreateUserInput!): User
+
+  signInWithGoogle(token: String!): AuthPayload
+  signUpWithGoogle(token: String!): User
+}

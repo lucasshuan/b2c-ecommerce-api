@@ -5,6 +5,7 @@ import (
 
 	"github.com/nobeluc/ecommerce-api/internal/database/scheme"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 type DBManager struct {
@@ -21,7 +22,10 @@ func NewDBManager(url *url.URL, models ...interface{}) *DBManager {
 
 func (d *DBManager) GetDB() (*gorm.DB, error) {
 	dialector := d.getDBScheme().GetDialector()
-	db, err := gorm.Open(dialector)
+	db, err := gorm.Open(dialector, &gorm.Config{
+		Logger:               logger.Default.LogMode(logger.Silent),
+		DisableAutomaticPing: true,
+	})
 	if err != nil {
 		return nil, err
 	}
