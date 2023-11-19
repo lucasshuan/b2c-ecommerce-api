@@ -30,19 +30,14 @@ The project adopts a well-organized controller-service-repository structure and 
 
 - **Authentication and Authorization:** 
 User registration with standard credentials or Google authentication.
-
 - **Cart Management:** 
 Users can add products, create orders, and track payment status.
-
 - **Product Management:** 
 Admins can add and categorize products for an enhanced shopping experience.
-
 - **Order Processing:** 
 Creation of orders and secure payment processing with detailed status tracking.
-
 - **Payment Integration:** 
 Seamless integration with Asaas for efficient and reliable payment processing.
-
 - **User Lifecycle Enhancements:** 
 Password recovery, email verification, and more to enhance user experience.
 
