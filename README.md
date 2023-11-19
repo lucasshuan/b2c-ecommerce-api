@@ -25,6 +25,7 @@ The project adopts a well-organized controller-service-repository structure and 
 - [Docker](https://www.docker.com/)
 - [gqlgen](https://gqlgen.com)
 - [Asaas](https://www.asaas.com/)
+- [Gin](https://gin-gonic.com)
 
 ## ✨ Features <a name="features"></a>
 
