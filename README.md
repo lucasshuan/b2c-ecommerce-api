@@ -5,28 +5,28 @@
 
 <p align="center">
   <a href="#about">📃 About</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#technologies">🚀 Technologies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#features">🚀 Features</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#getting_started">👨‍💻 Getting Started</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#technologies">💻 Technologies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#features">✨ Features</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#getting_started">🚀 Getting Started</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#usage">👨‍💻 Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#roadmap">👨‍💻 Roadmap</a>
-  <a href="#author">👨‍💻 Author</a>
+  <a href="#roadmap">🗺️ Roadmap</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#author">👤 Author</a>
 </p>
 
-## About <a name = "about"></a>
+## 📄 About <a name = "about"></a>
 
 E-commerce API is a Golang project featuring GraphQL with gqlgen for API development. 
 
 The project adopts a well-organized controller-service-repository structure and supports various functionalities, including user registration, Google authentication, cart management, order creation, payment processing, and more. Additionally, it integrates Asaas for enhanced functionality.
 
-## Tools <a name="tools"></a>
+## 💻 Tools <a name="tools"></a>
 
 - [Go](https://golang.org/)
 - [Docker](https://www.docker.com/)
 - [gqlgen](https://gqlgen.com)
 - [Asaas](https://www.asaas.com/)
 
-## Features <a name="features"></a>
+## ✨ Features <a name="features"></a>
 
 - **Authentication and Authorization:** 
 User registration with standard credentials or Google authentication.
@@ -46,7 +46,7 @@ Seamless integration with Asaas for efficient and reliable payment processing.
 - **User Lifecycle Enhancements:** 
 Password recovery, email verification, and more to enhance user experience.
 
-## Getting Started <a name = "getting_started"></a>
+## 🚀 Getting Started <a name = "getting_started"></a>
 
 ### Prerequisites
 
@@ -68,7 +68,7 @@ Password recovery, email verification, and more to enhance user experience.
     make deps
     ```
 
-## Usage <a name = "usage"></a>
+## 👨‍💻 Usage <a name = "usage"></a>
 
 ### GraphQL code generation
 
@@ -105,7 +105,7 @@ dev:
     company2: postgres://user:password@localhost:3402/ecommerce_db
 ```
 
-## Roadmap <a name="roadmap"></a>
+## 🗺️ Roadmap <a name="roadmap"></a>
 
 - **Testing Suite:** Integrate a comprehensive testing suite for robust code validation.
 - **Expanded Database Support:** Extend database support beyond PostgreSQL and MySQL to include additional databases.
@@ -114,7 +114,7 @@ dev:
 - **Order Tracking:** Integrate a user-friendly order tracking system, providing real-time updates on order status and location.
 
 
-## Author <a name = "author"></a>
+## 👤 Author <a name = "author"></a>
 
 <div align="center">
   <table>
