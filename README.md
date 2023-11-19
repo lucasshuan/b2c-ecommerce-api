@@ -46,8 +46,8 @@ Password recovery, email verification, and more to enhance user experience.
 
 ### Prerequisites
 
-- [Go](https://golang.org/)
-- [Docker](https://www.docker.com/)
+- **Go**
+- **Docker**
 
 ### Installing
 
