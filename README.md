@@ -48,6 +48,7 @@ Password recovery, email verification, and more to enhance user experience.
 
 - **Go**
 - **Docker**
+- **make**
 
 ### Installing
 
@@ -97,8 +98,8 @@ env: dev
 dev:
   port: 3000
   tenants:
-    company1: mysql://user:password@localhost:3401/ecommerce_db
-    company2: postgres://user:password@localhost:3402/ecommerce_db
+    tenant1: scheme://user:password@host:port/db
+    tenant2: ...
 ```
 
 ## 🗺️ Roadmap <a name="roadmap"></a>
