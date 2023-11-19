@@ -19,3 +19,8 @@ docker-down:
 		project_name=$$(basename $$(dirname "$$compose_dir")); \
 		docker-compose -p $$project_name -f "$$compose_dir" down -v; \
 	done
+
+deps:
+	@echo "Installing dependencies..."
+	go mod tidy
+	go mod vendor
