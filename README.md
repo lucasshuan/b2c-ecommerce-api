@@ -1,14 +1,17 @@
-# E-commerce API
+<div align="center">
+   <img href="https://avatars.githubusercontent.com/u/78228526?v=4" alt="Noven" height="168" title="Noven" src="https://avatars.githubusercontent.com/u/78228526?v=4" />
+   <h1>E-commerce API</h1>
+</div>
 
-## Table of Contents
-
-- [About](#about)
-- [Tools](#tools)
-- [Roadmap](#roadmap)
-- [Features](#features)
-- [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Author](#author)
+<p align="center">
+  <a href="#about">📃 About</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#technologies">🚀 Technologies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#features">🚀 Features</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#getting_started">👨‍💻 Getting Started</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#usage">👨‍💻 Usage</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#roadmap">👨‍💻 Roadmap</a>
+  <a href="#author">👨‍💻 Author</a>
+</p>
 
 ## About <a name = "about"></a>
 
@@ -18,27 +21,30 @@ The project adopts a well-organized controller-service-repository structure and 
 
 ## Tools <a name="tools"></a>
 
-- [Go](https://golang.org/): The programming language used for the backend development.
-- [Docker](https://www.docker.com/): Containerization platform used for running and managing development environments.
-- [gqlgen](https://gqlgen.com): GraphQL code generator for automating the generation of Go code based on your GraphQL schema.
-- [Asaas](https://www.asaas.com/): Payment solution integrated for enhanced payment processing functionality.
-
-## Roadmap <a name="roadmap"></a>
-
-- **Testing Suite:** Integrate a comprehensive testing suite for robust code validation.
-- **Expanded Database Support:** Extend database support beyond PostgreSQL and MySQL to include additional databases.
-- **Enhanced Security:** Implement advanced security measures, such as JWT for user authentication and authorization.
-- **Notification System:** Integrate a notification system to keep users informed about order updates and promotions.
-- **Order Tracking:** Integrate a user-friendly order tracking system, providing real-time updates on order status and location.
+- [Go](https://golang.org/)
+- [Docker](https://www.docker.com/)
+- [gqlgen](https://gqlgen.com)
+- [Asaas](https://www.asaas.com/)
 
 ## Features <a name="features"></a>
 
-- **Authentication and Authorization:** User registration with standard credentials or Google authentication.
-- **Cart Management:** Users can add products, create orders, and track payment status.
-- **Product Management:** Admins can add and categorize products for an enhanced shopping experience.
-- **Order Processing:** Creation of orders and secure payment processing with detailed status tracking.
-- **Payment Integration:** Seamless integration with Asaas for efficient and reliable payment processing.
-- **User Lifecycle Enhancements:** Password recovery, email verification, and more to enhance user experience.
+- **Authentication and Authorization:** 
+User registration with standard credentials or Google authentication.
+
+- **Cart Management:** 
+Users can add products, create orders, and track payment status.
+
+- **Product Management:** 
+Admins can add and categorize products for an enhanced shopping experience.
+
+- **Order Processing:** 
+Creation of orders and secure payment processing with detailed status tracking.
+
+- **Payment Integration:** 
+Seamless integration with Asaas for efficient and reliable payment processing.
+
+- **User Lifecycle Enhancements:** 
+Password recovery, email verification, and more to enhance user experience.
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -98,6 +104,15 @@ dev:
     company1: mysql://user:password@localhost:3401/ecommerce_db
     company2: postgres://user:password@localhost:3402/ecommerce_db
 ```
+
+## Roadmap <a name="roadmap"></a>
+
+- **Testing Suite:** Integrate a comprehensive testing suite for robust code validation.
+- **Expanded Database Support:** Extend database support beyond PostgreSQL and MySQL to include additional databases.
+- **Enhanced Security:** Implement advanced security measures, such as JWT for user authentication and authorization.
+- **Notification System:** Integrate a notification system to keep users informed about order updates and promotions.
+- **Order Tracking:** Integrate a user-friendly order tracking system, providing real-time updates on order status and location.
+
 
 ## Author <a name = "author"></a>
 
