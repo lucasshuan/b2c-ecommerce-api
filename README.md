@@ -1,6 +1,6 @@
 <div align="center">
    <img href="https://avatars.githubusercontent.com/u/78228526?v=4" alt="Noven" height="168" title="Noven" src="https://avatars.githubusercontent.com/u/78228526?v=4" />
-   <h1>E-commerce API</h1>
+   <h1>B2C E-commerce API</h1>
 </div>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 ## 📄 About <a name = "about"></a>
 
-E-commerce API is a Golang project featuring GraphQL with gqlgen and Gin for Web Framework. 
+B2C E-commerce API is a Golang project featuring GraphQL with gqlgen and Gin for Web Framework. 
 
 The project adopts a well-organized controller-service-repository structure and supports various functionalities, including user registration, Google authentication, cart management, order creation, payment processing, and more. Additionally, it integrates Asaas for enhanced functionality.
 
