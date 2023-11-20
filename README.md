@@ -15,7 +15,7 @@
 
 ## 📄 About <a name = "about"></a>
 
-B2C E-commerce API is a Golang project featuring GraphQL with gqlgen and Gin for Web Framework. 
+B2C (business to consumer) E-commerce API is a Golang project featuring GraphQL with gqlgen and Gin for Web Framework. 
 
 The project adopts a well-organized controller-service-repository structure and supports various functionalities, including user registration, Google authentication, cart management, order creation, payment processing, and more. Additionally, it integrates Asaas for enhanced functionality.
 
