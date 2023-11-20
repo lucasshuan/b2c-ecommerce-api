@@ -19,6 +19,8 @@ E-commerce API is a Golang project featuring GraphQL with gqlgen and Gin for Web
 
 The project adopts a well-organized controller-service-repository structure and supports various functionalities, including user registration, Google authentication, cart management, order creation, payment processing, and more. Additionally, it integrates Asaas for enhanced functionality.
 
+One standout feature is its multitenant design. This means the project is crafted to effortlessly support various databases with different structures. This flexibility allows it to adapt and scale based on the specific needs or preferences of users and businesses.
+
 ## 💻 Tools <a name="tools"></a>
 
 - [Go](https://golang.org/)
@@ -41,6 +43,8 @@ Creation of orders and secure payment processing with detailed status tracking.
 Seamless integration with Asaas for efficient and reliable payment processing.
 - **User Lifecycle Enhancements:** 
 Password recovery, email verification, and more to enhance user experience.
+- **Multitenancy:** 
+Designed for seamless scalability, the project supports multiple databases with varying structures.
 
 ## 🚀 Getting Started <a name = "getting_started"></a>
 
