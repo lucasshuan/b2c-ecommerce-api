@@ -6,16 +6,16 @@ type Cart {
   userId: ID
   order: Order
   products: [CartProduct!]
-  createdAt: Time!
-  updatedAt: Time!
+  created_at: Time!
+  updated_at: Time!
 }
 
 type CartProduct {
   id: ID!
   quantity: Int!
   product: Product!
-  createdAt: Time!
-  updatedAt: Time!
+  created_at: Time!
+  updated_at: Time!
 }
 
 input CreateCartInput {
@@ -40,3 +40,4 @@ extend type Mutation {
   addProductToCart(input: AddProductToCartInput!): CartProduct
   removeProductFromCart(cartProductID: ID!): Cart
 }
+

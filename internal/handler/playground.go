@@ -14,7 +14,10 @@ func PlaygroundHandler() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		h := playground.Handler("GraphQL playground", "/"+tenantID+"/graphql")
+		fh := map[string]string{
+			"X-Tenant-ID": tenantID,
+		}
+		h := playground.HandlerWithHeaders("GraphQL playground", "/graphql", fh, nil)
 		h.ServeHTTP(c.Writer, c.Request)
 	}
 }

@@ -12,7 +12,7 @@ import (
 
 func GraphqlHandler() gin.HandlerFunc {
 	return (func(c *gin.Context) {
-		tenantID := c.Param("tenantID")
+		tenantID := c.GetHeader("X-Tenant-ID")
 		if tenantID == "" {
 			log.AppLogger.Error("TenantID not found in context")
 			c.Abort()

@@ -1,5 +1,3 @@
-#import "user.graphqls"
-
 type AuthPayload {
   token: String
   user: User
@@ -10,6 +8,10 @@ extend type Mutation {
 
   signIn(LoginInput: LoginInput!): AuthPayload
   signUp(input: CreateUserInput!): User
+  verifyEmail(token: String!): User
+  resendEmailVerification(email: String!): Boolean!
+  forgotPassword(email: String!): Boolean!
+  resetPassword(token: String!, password: String!, confirmPassword: String!): Boolean!
 
   signInWithGoogle(token: String!): AuthPayload
   signUpWithGoogle(token: String!): User

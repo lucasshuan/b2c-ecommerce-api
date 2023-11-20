@@ -1,5 +1,3 @@
-#import "./category.graphqls"
-
 type Product {
   id: ID!
   name: String!

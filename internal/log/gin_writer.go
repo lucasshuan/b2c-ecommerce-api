@@ -4,7 +4,6 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/gin-gonic/gin"
 )
 
 type CustomGinWriter struct {
@@ -68,10 +67,8 @@ func deleteGinPrefix(str *string) string {
 	return prefix
 }
 
-func replaceGinWriter() {
-	customWriter := &CustomGinWriter{
+func GetCustomGinWriter() *CustomGinWriter {
+	return &CustomGinWriter{
 		logger: AppLogger.WithPrefix("[gin]"),
 	}
-
-	gin.DefaultWriter = customWriter
 }

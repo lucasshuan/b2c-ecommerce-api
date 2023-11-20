@@ -1,9 +1,9 @@
-#import "./product.graphqls"
-
 type Category {
   id: ID!
   name: String!
   products: [Product!]
+  created_at: Time!
+  updated_at: Time!
 }
 
 input CreateCategoryInput {

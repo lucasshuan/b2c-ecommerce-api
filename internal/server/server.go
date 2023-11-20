@@ -8,7 +8,7 @@ import (
 	"github.com/nobeluc/ecommerce-api/internal/middleware"
 )
 
-func Init(c *configs.AppConfig) {
+func Start(c *configs.AppConfig) {
 	r := gin.Default()
 	r.Use(middleware.LoggingMiddleware())
 	registerRoutes(r)
@@ -19,6 +19,6 @@ func Init(c *configs.AppConfig) {
 }
 
 func registerRoutes(r *gin.Engine) {
-	r.POST("/:tenantID/graphql", handler.GraphqlHandler())
-	r.GET("/:tenantID/playground", handler.PlaygroundHandler())
+	r.POST("/graphql", handler.GraphqlHandler())
+	r.GET("/playground/:tenantID", handler.PlaygroundHandler())
 }

@@ -1,6 +1,3 @@
-#import "./cart.graphqls"
-#import "./user.graphqls"
-
 type Order {
   id: ID!
   value: Float!
