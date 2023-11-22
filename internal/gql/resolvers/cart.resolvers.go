@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/nobeluc/ecommerce-api/internal/gql"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
 )
 
 // CreateCart is the resolver for the createCart field.
@@ -24,6 +24,11 @@ func (r *mutationResolver) AddProductToCart(ctx context.Context, input gql.AddPr
 // RemoveProductFromCart is the resolver for the removeProductFromCart field.
 func (r *mutationResolver) RemoveProductFromCart(ctx context.Context, cartProductID string) (*gql.Cart, error) {
 	panic(fmt.Errorf("not implemented: RemoveProductFromCart - removeProductFromCart"))
+}
+
+// EmptyCart is the resolver for the emptyCart field.
+func (r *mutationResolver) EmptyCart(ctx context.Context, cartID string) (*gql.Cart, error) {
+	panic(fmt.Errorf("not implemented: EmptyCart - emptyCart"))
 }
 
 // Cart is the resolver for the cart field.

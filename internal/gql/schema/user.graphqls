@@ -1,6 +1,3 @@
-#import "cart.graphqls"
-#import "order.graphqls"
-
 type User {
   id: ID!
   name: String!
@@ -14,7 +11,7 @@ type User {
 input CreateUserInput {
   name: String! @length(min: 6, max: 32)
   email: String! @email
-  password: String!
+  password: String! @length(min: 8, max: 256)
 }
 
 input UpdateUserInput {
@@ -34,9 +31,9 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): User
-  updateUser(input: UpdateUserInput!): User
-  deleteUser(id: ID!): Boolean!
+  createUser(input: CreateUserInput!): User @isAdmin
+  updateUser(input: UpdateUserInput!): User @isAdmin
+  deleteUser(id: ID!): Boolean! @isAdmin
 
-  associateGoogleAccount(token: String!): User
+  associateGoogleAccount(token: String!): User @isUser
 }

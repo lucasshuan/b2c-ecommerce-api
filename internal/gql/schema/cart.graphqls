@@ -31,13 +31,13 @@ input AddProductToCartInput {
 }
 
 extend type Query {
-  cart(id: ID!): Cart
-  carts(userID: ID!): [Cart]
+  cart(id: ID!): Cart @isUser
+  carts(userID: ID!): [Cart] @isUser
 }
 
 extend type Mutation {
-  createCart(input: CreateCartInput!): Cart
-  addProductToCart(input: AddProductToCartInput!): CartProduct
-  removeProductFromCart(cartProductID: ID!): Cart
+  createCart(input: CreateCartInput!): Cart @isUser
+  addProductToCart(input: AddProductToCartInput!): CartProduct @isUser
+  removeProductFromCart(cartProductID: ID!): Cart @isUser
+  emptyCart(cartID: ID!): Cart @isUser
 }
-

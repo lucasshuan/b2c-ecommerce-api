@@ -28,13 +28,13 @@ enum BillingType {
 }
 
 extend type Query {
-  order(id: ID!): Order
-  orders(userID: ID!): [Order!]
+  order(id: ID!): Order @isUser
+  orders(userID: ID!): [Order!] @isUser
 }
 
 extend type Mutation {
-  createOrder(input: CreateOrderInput!): Order!
-  deleteOrder(id: ID!): Order!
+  createOrder(input: CreateOrderInput!): Order! @isUser
+  deleteOrder(id: ID!): Order! @isUser
 }
 
 extend type Subscription {

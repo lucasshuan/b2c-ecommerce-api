@@ -41,7 +41,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createProduct(input: CreateProductInput!): Product
-  updateProduct(input: UpdateProductInput!): Product
-  deleteProduct(id: ID!): Boolean!
+  createProduct(input: CreateProductInput!): Product @isAdmin
+  updateProduct(input: UpdateProductInput!): Product @isAdmin
+  deleteProduct(id: ID!): Boolean! @isAdmin
 }

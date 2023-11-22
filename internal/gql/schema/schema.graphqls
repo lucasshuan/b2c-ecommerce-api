@@ -28,6 +28,16 @@ Scalar type representing a point in time.
 scalar Time
 
 """
+Custom directive to validate if user is authenticated
+"""
+directive @isUser on FIELD_DEFINITION
+
+"""
+Custom directive to validate if user is authenticated and is an admin
+"""
+directive @isAdmin on FIELD_DEFINITION
+
+"""
 Custom directive to specify a length constraint on a field.
 """
 directive @length(min: Int, max: Int) on INPUT_FIELD_DEFINITION

@@ -1,8 +1,8 @@
 package resolvers
 
 import (
-	"github.com/nobeluc/ecommerce-api/internal/repository"
-	"github.com/nobeluc/ecommerce-api/internal/service"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/repository"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/service"
 	"gorm.io/gorm"
 )
 

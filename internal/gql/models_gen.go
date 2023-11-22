@@ -15,6 +15,11 @@ type AddProductToCartInput struct {
 	Quantity  int    `json:"quantity"`
 }
 
+type AuthPayload struct {
+	Token *string `json:"token,omitempty"`
+	User  *User   `json:"user,omitempty"`
+}
+
 type Cart struct {
 	ID        string         `json:"id"`
 	IsActive  bool           `json:"isActive"`
@@ -23,22 +28,30 @@ type Cart struct {
 	UserID    *string        `json:"userId,omitempty"`
 	Order     *Order         `json:"order,omitempty"`
 	Products  []*CartProduct `json:"products,omitempty"`
-	CreatedAt time.Time      `json:"createdAt"`
-	UpdatedAt time.Time      `json:"updatedAt"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
 }
 
 type CartProduct struct {
 	ID        string    `json:"id"`
 	Quantity  int       `json:"quantity"`
 	Product   *Product  `json:"product"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type Category struct {
-	ID       string     `json:"id"`
-	Name     string     `json:"name"`
-	Products []*Product `json:"products,omitempty"`
+	ID        string     `json:"id"`
+	Name      string     `json:"name"`
+	Products  []*Product `json:"products,omitempty"`
+	CreatedAt time.Time  `json:"created_at"`
+	UpdatedAt time.Time  `json:"updated_at"`
+}
+
+type ChangePasswordInput struct {
+	OldPassword     string `json:"oldPassword"`
+	NewPassword     string `json:"newPassword"`
+	ConfirmPassword string `json:"confirmPassword"`
 }
 
 type CreateCartInput struct {
@@ -87,8 +100,8 @@ type Order struct {
 	BillingType   *BillingType   `json:"billingType,omitempty"`
 	Cart          *Cart          `json:"cart"`
 	User          *User          `json:"user"`
-	CreatedAt     time.Time      `json:"createdAt"`
-	UpdatedAt     time.Time      `json:"updatedAt"`
+	CreatedAt     time.Time      `json:"created_at"`
+	UpdatedAt     time.Time      `json:"updated_at"`
 }
 
 type Product struct {
@@ -99,8 +112,19 @@ type Product struct {
 	CategoryID  *string   `json:"categoryID,omitempty"`
 	Category    *Category `json:"category,omitempty"`
 	Carts       []*Cart   `json:"carts,omitempty"`
-	CreatedAt   time.Time `json:"createdAt"`
-	UpdatedAt   time.Time `json:"updatedAt"`
+	CreatedAt   time.Time `json:"created_at"`
+	UpdatedAt   time.Time `json:"updated_at"`
+}
+
+type ResetPasswordInput struct {
+	Token           string `json:"token"`
+	Password        string `json:"password"`
+	ConfirmPassword string `json:"confirmPassword"`
+}
+
+type SignInInput struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 type UpdateCategoryInput struct {
@@ -116,11 +140,9 @@ type UpdateProductInput struct {
 }
 
 type UpdateUserInput struct {
-	ID              string  `json:"id"`
-	Name            *string `json:"name,omitempty"`
-	Email           *string `json:"email,omitempty"`
-	NewPassword     *string `json:"newPassword,omitempty"`
-	ConfirmPassword string  `json:"confirmPassword"`
+	ID    string  `json:"id"`
+	Name  *string `json:"name,omitempty"`
+	Email *string `json:"email,omitempty"`
 }
 
 type User struct {
@@ -129,8 +151,8 @@ type User struct {
 	Email     string    `json:"email"`
 	Cart      []*Cart   `json:"cart,omitempty"`
 	Orders    []*Order  `json:"orders,omitempty"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type BillingType string

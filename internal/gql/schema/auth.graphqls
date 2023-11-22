@@ -3,16 +3,40 @@ type AuthPayload {
   user: User
 }
 
-extend type Mutation {
-  changePassword(newPassword: String!, confirmPassword: String!): Boolean!
+input SignInInput {
+  email: String!
+  password: String!
+}
 
-  signIn(LoginInput: LoginInput!): AuthPayload
+input ResetPasswordInput {
+  token: String!
+  password: String!
+  confirmPassword: String!
+}
+
+input ChangePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+  confirmPassword: String!
+}
+
+extend type Query {
+  signIn(input: SignInInput!): AuthPayload
+  signInWithGoogle(token: String!): AuthPayload
+
+  signOut: Boolean!
+
+  refreshToken(token: String!): AuthPayload @isUser
+}
+
+extend type Mutation {
   signUp(input: CreateUserInput!): User
+  signUpWithGoogle(token: String!): User
+
   verifyEmail(token: String!): User
   resendEmailVerification(email: String!): Boolean!
   forgotPassword(email: String!): Boolean!
-  resetPassword(token: String!, password: String!, confirmPassword: String!): Boolean!
+  resetPassword(input: ResetPasswordInput!): Boolean!
 
-  signInWithGoogle(token: String!): AuthPayload
-  signUpWithGoogle(token: String!): User
+  changePassword(input: ChangePasswordInput!): Boolean! @isUser
 }

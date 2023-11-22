@@ -9,34 +9,12 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/nobeluc/ecommerce-api/internal/gql"
-	"github.com/nobeluc/ecommerce-api/internal/model"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
 )
 
-// Login is the resolver for the login field.
-func (r *mutationResolver) Login(ctx context.Context, loginInput gql.LoginInput) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: Login - login"))
-}
-
-// RegisterUser is the resolver for the registerUser field.
-func (r *mutationResolver) RegisterUser(ctx context.Context, input gql.CreateUserInput) (*gql.User, error) {
-	user := &model.User{
-		Name:  input.Name,
-		Email: input.Email,
-	}
-
-	err := r.UserService.CreateUser(user, input.Password)
-	if err != nil {
-		return nil, err
-	}
-
-	return &gql.User{
-		ID:        strconv.Itoa(int(user.ID)),
-		Name:      user.Name,
-		Email:     user.Email,
-		CreatedAt: user.CreatedAt,
-		UpdatedAt: user.UpdatedAt,
-	}, nil
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input gql.CreateUserInput) (*gql.User, error) {
+	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
 
 // UpdateUser is the resolver for the updateUser field.
@@ -47,6 +25,11 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, input gql.UpdateUserI
 // DeleteUser is the resolver for the deleteUser field.
 func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, error) {
 	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
+}
+
+// AssociateGoogleAccount is the resolver for the associateGoogleAccount field.
+func (r *mutationResolver) AssociateGoogleAccount(ctx context.Context, token string) (*gql.User, error) {
+	panic(fmt.Errorf("not implemented: AssociateGoogleAccount - associateGoogleAccount"))
 }
 
 // User is the resolver for the user field.

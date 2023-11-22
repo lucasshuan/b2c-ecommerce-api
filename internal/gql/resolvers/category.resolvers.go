@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/nobeluc/ecommerce-api/internal/gql"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
 )
 
 // CreateCategory is the resolver for the createCategory field.
