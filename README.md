@@ -59,8 +59,8 @@ Designed for seamless scalability, the project supports multiple databases with 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/ecommerce-api.git
-    cd ecommerce-api
+    git clone https://github.com/lucasshuan/b2c-ecommerce-api.git
+    cd b2c-ecommerce-api
     ```
 
 2. Install dependencies:
