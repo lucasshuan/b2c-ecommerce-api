@@ -3,15 +3,15 @@ package database
 import (
 	"net/url"
 
-	"github.com/nobeluc/ecommerce-api/configs"
-	"github.com/nobeluc/ecommerce-api/internal/log"
-	"github.com/nobeluc/ecommerce-api/internal/model"
+	"github.com/lucasshuan/b2c-ecommerce-api/configs"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/log"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 	"gorm.io/gorm"
 )
 
 var Databases = make(map[string]*gorm.DB)
 
-func Init(c *configs.AppConfig) {
+func Init() {
 	models := []interface{}{
 		&model.Category{},
 		&model.User{},
@@ -21,7 +21,7 @@ func Init(c *configs.AppConfig) {
 		&model.Cart{},
 	}
 
-	for _, tenant := range c.Tenants {
+	for _, tenant := range configs.Config.Tenants {
 		if tenant.DatabaseURL == "" {
 			log.AppLogger.Fatalf("Database url is empty")
 		}

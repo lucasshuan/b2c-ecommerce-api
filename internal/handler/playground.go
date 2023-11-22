@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gin-gonic/gin"
-	"github.com/nobeluc/ecommerce-api/internal/log"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/log"
 )
 
 func PlaygroundHandler() gin.HandlerFunc {

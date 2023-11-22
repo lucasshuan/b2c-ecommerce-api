@@ -2,18 +2,22 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/nobeluc/ecommerce-api/configs"
-	"github.com/nobeluc/ecommerce-api/internal/handler"
-	"github.com/nobeluc/ecommerce-api/internal/log"
-	"github.com/nobeluc/ecommerce-api/internal/middleware"
+	"github.com/lucasshuan/b2c-ecommerce-api/configs"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/auth"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/handler"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/log"
 )
 
-func Start(c *configs.AppConfig) {
+func Init() {
+	gin.DefaultWriter = log.GetCustomGinWriter()
 	r := gin.Default()
-	r.Use(middleware.LoggingMiddleware())
+
+	r.Use(auth.Middleware())
+	r.Use(log.Middleware())
+
 	registerRoutes(r)
 
-	if err := r.Run(":" + c.Port); err != nil {
+	if err := r.Run(":" + configs.Config.Port); err != nil {
 		log.AppLogger.Fatalf("Failed to start server: %v", err)
 	}
 }

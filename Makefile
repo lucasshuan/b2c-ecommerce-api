@@ -1,26 +1,15 @@
 gqlgen:
-	@echo "Running go generate..."
-	go run github.com/99designs/gqlgen generate
+	go run github.com/99designs/gqlgen
 
 server:
-	@echo "Running server..."
-	go run cmd/main.go
+	go run main.go server
 
 docker-up:
-	@echo "Running Docker containers..."
-	@for compose_dir in ./docker/*/compose.yml; do \
-		project_name=$$(basename $$(dirname "$$compose_dir")); \
-		docker-compose -p $$project_name -f "$$compose_dir" up -d; \
-	done
+	go run main.go docker-up
 
 docker-down:
-	@echo "Stopping Docker containers..."
-	@for compose_dir in ./docker/*/compose.yml; do \
-		project_name=$$(basename $$(dirname "$$compose_dir")); \
-		docker-compose -p $$project_name -f "$$compose_dir" down -v; \
-	done
+	go run main.go docker-down
 
 deps:
-	@echo "Installing dependencies..."
 	go mod tidy
 	go mod vendor

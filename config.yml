@@ -1,6 +1,7 @@
 env: dev
 dev:
   port: 3000
+  jwt_secret: 4f2d1ef6213a727dda15ed754bf6f6c3d8391b3908af2a1f645f6074ee982624
   tenants: 
     company1: mysql://user:password@localhost:3401/ecommerce_db
     company2: postgres://user:password@localhost:3402/ecommerce_db

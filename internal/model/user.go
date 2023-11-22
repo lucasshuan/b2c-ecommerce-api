@@ -12,6 +12,7 @@ type User struct {
 	OAuthProvider     string
 	OAuthAccessToken  string
 	OAuthRefreshToken string
+	IsAdmin           bool
 	Carts             []*Cart
 	Orders            []*Order
 }

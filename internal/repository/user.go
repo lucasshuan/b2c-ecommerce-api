@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/nobeluc/ecommerce-api/internal/model"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 	"gorm.io/gorm"
 )
 

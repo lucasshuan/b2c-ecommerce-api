@@ -3,7 +3,7 @@ package database
 import (
 	"net/url"
 
-	"github.com/nobeluc/ecommerce-api/internal/database/scheme"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/database/scheme"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )

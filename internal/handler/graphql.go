@@ -3,11 +3,11 @@ package handler
 import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/gin-gonic/gin"
-	"github.com/nobeluc/ecommerce-api/internal/database"
-	"github.com/nobeluc/ecommerce-api/internal/gql"
-	"github.com/nobeluc/ecommerce-api/internal/gql/resolvers"
-	"github.com/nobeluc/ecommerce-api/internal/log"
-	"github.com/nobeluc/ecommerce-api/internal/validation"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/database"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql/resolvers"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql/validation"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/log"
 )
 
 func GraphqlHandler() gin.HandlerFunc {
@@ -28,8 +28,10 @@ func GraphqlHandler() gin.HandlerFunc {
 		config := gql.Config{
 			Resolvers: resolver,
 			Directives: gql.DirectiveRoot{
-				Length: validation.LengthDirective,
-				Email:  validation.EmailDirective,
+				Length:  validation.Length,
+				Email:   validation.Email,
+				IsUser:  validation.IsUser,
+				IsAdmin: validation.IsAdmin,
 			},
 		}
 

@@ -3,9 +3,9 @@ package service
 import (
 	"errors"
 
-	"github.com/nobeluc/ecommerce-api/internal/model"
-	"github.com/nobeluc/ecommerce-api/internal/repository"
-	"github.com/nobeluc/ecommerce-api/internal/util"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/repository"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/util"
 )
 
 type UserService struct {
