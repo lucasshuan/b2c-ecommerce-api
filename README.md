@@ -102,7 +102,7 @@ dev:
 
 To start the development server, run the following command:
 
-````bash
+```bash
 make server
 ```
 
