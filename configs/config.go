@@ -11,9 +11,11 @@ type Tenant struct {
 }
 
 type AppConfig struct {
-	JWTSecret string
-	Port      string
-	Tenants   []Tenant
+	JWTSecret          string
+	GoogleClientID     string
+	GoogleClientSecret string
+	Port               string
+	Tenants            []Tenant
 }
 
 var Config *AppConfig

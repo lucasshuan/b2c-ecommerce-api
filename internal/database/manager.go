@@ -38,7 +38,7 @@ func (d *DBManager) GetDB() (*gorm.DB, error) {
 	return db, nil
 }
 
-func (d *DBManager) getDBScheme() scheme.DBScheme {
+func (d *DBManager) getDBScheme() DBScheme {
 	switch d.url.Scheme {
 	case "mysql":
 		return scheme.NewMySQL(d.url)

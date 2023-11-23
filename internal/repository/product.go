@@ -23,7 +23,7 @@ func (r *ProductRepository) ListProductsByFilters(filters map[string]interface{}
 	return products, nil
 }
 
-func (r *ProductRepository) FindProductById(id uint) (*model.Product, error) {
+func (r *ProductRepository) FindProductByID(id uint) (*model.Product, error) {
 	var product model.Product
 	if err := r.DB.First(&product, id).Error; err != nil {
 		return nil, err

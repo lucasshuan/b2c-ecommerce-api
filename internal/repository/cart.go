@@ -25,7 +25,7 @@ func (r *CartRepository) ListCartsByUserID(userID uint) ([]*model.Cart, error) {
 
 func (r *CartRepository) FindCartByID(id uint) (*model.Cart, error) {
 	var cart model.Cart
-	if err := r.DB.First(&cart, id).Error; err != nil {
+	if err := r.DB.First(&cart, id).Preload("CartProducts").Error; err != nil {
 		return nil, err
 	}
 	return &cart, nil
@@ -35,6 +35,14 @@ func (r *CartRepository) SaveCart(cart *model.Cart) error {
 	return r.DB.Save(cart).Error
 }
 
+func (r *CartRepository) SaveCartProduct(cartProduct *model.CartProduct) error {
+	return r.DB.Save(cartProduct).Error
+}
+
 func (r *CartRepository) DeleteCart(cart *model.Cart) error {
 	return r.DB.Delete(cart).Error
+}
+
+func (r *CartRepository) DeleteCartProduct(cartProduct *model.CartProduct) error {
+	return r.DB.Delete(cartProduct).Error
 }

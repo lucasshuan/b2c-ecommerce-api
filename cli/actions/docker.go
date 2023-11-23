@@ -22,11 +22,8 @@ func DockerUpAction(ctx *cli.Context) error {
 		cmd.Stderr = os.Stderr
 		cmd.Stdout = os.Stdout
 		cmd.Stdin = os.Stdin
-		err := cmd.Run()
 
-		if err != nil {
-			continue
-		}
+		cmd.Run()
 	}
 	return nil
 }
@@ -43,11 +40,7 @@ func DockerDownAction(ctx *cli.Context) error {
 		cmd := exec.Command("docker-compose", "-f", composeFile, "down", "-v")
 		cmd.Stderr = os.Stderr
 		cmd.Stdout = os.Stdout
-		err := cmd.Run()
-
-		if err != nil {
-			continue
-		}
+		cmd.Run()
 	}
 	return nil
 }

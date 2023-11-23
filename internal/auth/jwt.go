@@ -1,9 +1,11 @@
 package auth
 
 import (
+	"errors"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/lucasshuan/b2c-ecommerce-api/configs"
 	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 )
 
@@ -28,7 +30,7 @@ func GetUserPermission(user model.User) Permission {
 	return User
 }
 
-func GenerateToken(jwtSecret string, user model.User) (string, error) {
+func GenerateToken(user model.User) (string, error) {
 	expirationTime := time.Now().Add(24 * time.Hour)
 
 	permission := GetUserPermission(user)
@@ -42,10 +44,31 @@ func GenerateToken(jwtSecret string, user model.User) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString([]byte(jwtSecret))
+	tokenString, err := token.SignedString([]byte(configs.Config.JWTSecret))
 	if err != nil {
 		return "", err
 	}
 
 	return tokenString, nil
+}
+
+func ValidateToken(tokenString string, jwtSecret string) (*Claims, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(jwtSecret), nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(*Claims)
+	if !ok {
+		return nil, errors.New("unable to parse claims")
+	}
+
+	if claims.ExpiresAt < time.Now().Unix() {
+		return nil, errors.New("jwt is expired")
+	}
+
+	return claims, nil
 }

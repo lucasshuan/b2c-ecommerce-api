@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/lucasshuan/b2c-ecommerce-api/configs"
 )
@@ -15,11 +14,10 @@ func Middleware() gin.HandlerFunc {
 			return
 		}
 
-		claims := &Claims{}
-		if _, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-			return configs.Config.JWTSecret, nil
-		}); err != nil {
-			ctx.Abort()
+		claims, err := ValidateToken(tokenString, configs.Config.JWTSecret)
+		if err != nil {
+			ctx.Set("permission", Guest)
+			ctx.Next()
 			return
 		}
 

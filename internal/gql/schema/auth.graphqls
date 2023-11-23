@@ -31,7 +31,6 @@ extend type Query {
 
 extend type Mutation {
   signUp(input: CreateUserInput!): User
-  signUpWithGoogle(token: String!): User
 
   verifyEmail(token: String!): User
   resendEmailVerification(email: String!): Boolean!
