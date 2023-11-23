@@ -21,7 +21,7 @@ The project adopts a well-organized controller-service-repository structure and 
 
 One standout feature is its multitenant design. This means the project is crafted to effortlessly support various databases with different structures. This flexibility allows it to adapt and scale based on the specific needs or preferences of users and businesses.
 
-## 💻 Tools <a name="tools"></a>
+## 💻 Technologies <a name="technologies"></a>
 
 - [Go](https://golang.org/)
 - [Docker](https://www.docker.com/)
