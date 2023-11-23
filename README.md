@@ -71,14 +71,6 @@ Designed for seamless scalability, the project supports multiple databases with 
 
 ## 👨‍💻 Usage <a name = "usage"></a>
 
-### GraphQL code generation
-
-1. Generate GraphQL code for new gql/schema:
-
-    ```bash
-    make gqlgen
-    ```
-
 ### Manage Docker containers
 
 1. Start containers:
