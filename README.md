@@ -98,6 +98,14 @@ dev:
     tenant2: ...
 ```
 
+### Server
+
+To start the development server, run the following command:
+
+````bash
+make server
+```
+
 ## 🗺️ Roadmap <a name="roadmap"></a>
 
 - **Testing Suite:** Integrate a comprehensive testing suite for robust code validation.
