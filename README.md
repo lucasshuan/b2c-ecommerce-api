@@ -1,5 +1,5 @@
 <div align="center">
-   <img href="https://avatars.githubusercontent.com/u/78228526?v=4" alt="Noven" height="168" title="Noven" src="https://avatars.githubusercontent.com/u/78228526?v=4" />
+   <img src="https://github.com/lucasshuan/lucasshuan/assets/78228526/250d306c-c9d7-4b9a-990a-120a8028e881">
    <h1>B2C E-commerce API</h1>
 </div>
 
