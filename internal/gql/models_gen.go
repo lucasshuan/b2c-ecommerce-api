@@ -7,45 +7,19 @@ import (
 	"io"
 	"strconv"
 	"time"
+
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 )
 
 type AddProductToCartInput struct {
-	CartID    string `json:"cartId"`
-	ProductID string `json:"productId"`
-	Quantity  int    `json:"quantity"`
+	CartID    uint `json:"cartId"`
+	ProductID uint `json:"productId"`
+	Quantity  int  `json:"quantity"`
 }
 
 type AuthPayload struct {
 	Token *string `json:"token,omitempty"`
 	User  *User   `json:"user,omitempty"`
-}
-
-type Cart struct {
-	ID        string         `json:"id"`
-	IsActive  bool           `json:"isActive"`
-	Value     float64        `json:"value"`
-	User      *User          `json:"user"`
-	UserID    *string        `json:"userId,omitempty"`
-	Order     *Order         `json:"order,omitempty"`
-	Products  []*CartProduct `json:"products,omitempty"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-}
-
-type CartProduct struct {
-	ID        string    `json:"id"`
-	Quantity  int       `json:"quantity"`
-	Product   *Product  `json:"product"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-}
-
-type Category struct {
-	ID        string     `json:"id"`
-	Name      string     `json:"name"`
-	Products  []*Product `json:"products,omitempty"`
-	CreatedAt time.Time  `json:"created_at"`
-	UpdatedAt time.Time  `json:"updated_at"`
 }
 
 type ChangePasswordInput struct {
@@ -57,7 +31,7 @@ type ChangePasswordInput struct {
 type CreateCartInput struct {
 	IsActive bool    `json:"isActive"`
 	Value    float64 `json:"value"`
-	UserID   string  `json:"userId"`
+	UserID   uint    `json:"userId"`
 }
 
 type CreateCategoryInput struct {
@@ -66,7 +40,7 @@ type CreateCategoryInput struct {
 
 type CreateOrderInput struct {
 	Value  float64 `json:"value"`
-	CartID string  `json:"cartId"`
+	CartID uint    `json:"cartId"`
 }
 
 type CreateProductInput struct {
@@ -94,26 +68,26 @@ type LoginInput struct {
 }
 
 type Order struct {
-	ID            string         `json:"id"`
+	ID            uint           `json:"id"`
 	Value         float64        `json:"value"`
 	PaymentStatus *PaymentStatus `json:"paymentStatus,omitempty"`
 	BillingType   *BillingType   `json:"billingType,omitempty"`
-	Cart          *Cart          `json:"cart"`
+	Cart          model.Cart     `json:"cart"`
 	User          *User          `json:"user"`
 	CreatedAt     time.Time      `json:"created_at"`
 	UpdatedAt     time.Time      `json:"updated_at"`
 }
 
 type Product struct {
-	ID          string    `json:"id"`
-	Name        string    `json:"name"`
-	Price       float64   `json:"price"`
-	Description *string   `json:"description,omitempty"`
-	CategoryID  *string   `json:"categoryID,omitempty"`
-	Category    *Category `json:"category,omitempty"`
-	Carts       []*Cart   `json:"carts,omitempty"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
+	ID          uint            `json:"id"`
+	Name        string          `json:"name"`
+	Price       float64         `json:"price"`
+	Description *string         `json:"description,omitempty"`
+	CategoryID  *uint           `json:"categoryID,omitempty"`
+	Category    *model.Category `json:"category,omitempty"`
+	Carts       []*model.Cart   `json:"carts,omitempty"`
+	CreatedAt   time.Time       `json:"created_at"`
+	UpdatedAt   time.Time       `json:"updated_at"`
 }
 
 type ResetPasswordInput struct {
@@ -128,31 +102,31 @@ type SignInInput struct {
 }
 
 type UpdateCategoryInput struct {
-	ID   string  `json:"id"`
+	ID   uint    `json:"id"`
 	Name *string `json:"name,omitempty"`
 }
 
 type UpdateProductInput struct {
-	ID          string   `json:"id"`
+	ID          uint     `json:"id"`
 	Name        *string  `json:"name,omitempty"`
 	Price       *float64 `json:"price,omitempty"`
 	Description *string  `json:"description,omitempty"`
 }
 
 type UpdateUserInput struct {
-	ID    string  `json:"id"`
+	ID    uint    `json:"id"`
 	Name  *string `json:"name,omitempty"`
 	Email *string `json:"email,omitempty"`
 }
 
 type User struct {
-	ID        string    `json:"id"`
-	Name      string    `json:"name"`
-	Email     string    `json:"email"`
-	Cart      []*Cart   `json:"cart,omitempty"`
-	Orders    []*Order  `json:"orders,omitempty"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        uint          `json:"id"`
+	Name      string        `json:"name"`
+	Email     string        `json:"email"`
+	Cart      []*model.Cart `json:"cart,omitempty"`
+	Orders    []*Order      `json:"orders,omitempty"`
+	CreatedAt time.Time     `json:"created_at"`
+	UpdatedAt time.Time     `json:"updated_at"`
 }
 
 type BillingType string

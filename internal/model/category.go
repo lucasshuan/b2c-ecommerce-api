@@ -1,11 +1,24 @@
 package model
 
 import (
-	"gorm.io/gorm"
+	"encoding/json"
+	"io"
 )
 
 type Category struct {
-	gorm.Model
-	Name     string     `gorm:"unique"`
-	Products []*Product `gorm:"ForeignKey:CategoryID"`
+	Base
+	Name     string `gorm:"unique"`
+	Products []*Product
+}
+
+func (c *Category) UnmarshalGQL(v interface{}) error {
+	return nil
+}
+
+func (c Category) MarshalGQL(w io.Writer) {
+	c.Base.MarshalGQL(w)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"name":     c.Name,
+		"products": c.Products,
+	})
 }

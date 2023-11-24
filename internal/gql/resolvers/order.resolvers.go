@@ -17,21 +17,21 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input gql.CreateOrde
 }
 
 // DeleteOrder is the resolver for the deleteOrder field.
-func (r *mutationResolver) DeleteOrder(ctx context.Context, id string) (*gql.Order, error) {
+func (r *mutationResolver) DeleteOrder(ctx context.Context, id uint) (*gql.Order, error) {
 	panic(fmt.Errorf("not implemented: DeleteOrder - deleteOrder"))
 }
 
 // Order is the resolver for the order field.
-func (r *queryResolver) Order(ctx context.Context, id string) (*gql.Order, error) {
+func (r *queryResolver) Order(ctx context.Context, id uint) (*gql.Order, error) {
 	panic(fmt.Errorf("not implemented: Order - order"))
 }
 
 // Orders is the resolver for the orders field.
-func (r *queryResolver) Orders(ctx context.Context, userID string) ([]*gql.Order, error) {
+func (r *queryResolver) Orders(ctx context.Context, userID uint) ([]*gql.Order, error) {
 	panic(fmt.Errorf("not implemented: Orders - orders"))
 }
 
 // OrderPaymentUpdate is the resolver for the orderPaymentUpdate field.
-func (r *subscriptionResolver) OrderPaymentUpdate(ctx context.Context, orderID string) (<-chan *gql.Order, error) {
+func (r *subscriptionResolver) OrderPaymentUpdate(ctx context.Context, orderID uint) (<-chan *gql.Order, error) {
 	panic(fmt.Errorf("not implemented: OrderPaymentUpdate - orderPaymentUpdate"))
 }

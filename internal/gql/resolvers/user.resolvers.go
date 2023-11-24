@@ -6,40 +6,69 @@ package resolvers
 
 import (
 	"context"
-	"fmt"
-	"strconv"
 
 	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 )
 
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input gql.CreateUserInput) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
-}
+	user := &model.User{
+		Name:  input.Name,
+		Email: input.Email,
+	}
 
-// UpdateUser is the resolver for the updateUser field.
-func (r *mutationResolver) UpdateUser(ctx context.Context, input gql.UpdateUserInput) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: UpdateUser - updateUser"))
-}
-
-// DeleteUser is the resolver for the deleteUser field.
-func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, error) {
-	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
-}
-
-// AssociateGoogleAccount is the resolver for the associateGoogleAccount field.
-func (r *mutationResolver) AssociateGoogleAccount(ctx context.Context, token string) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: AssociateGoogleAccount - associateGoogleAccount"))
-}
-
-// User is the resolver for the user field.
-func (r *queryResolver) User(ctx context.Context, id string) (*gql.User, error) {
-	userID, err := strconv.Atoi(id)
+	err := r.UserService.CreateUser(user, input.Password)
 	if err != nil {
 		return nil, err
 	}
 
-	user, err := r.UserService.FindUserByID(uint(userID))
+	return &gql.User{
+		ID:        user.ID,
+		Name:      user.Name,
+		Email:     user.Email,
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: user.UpdatedAt,
+	}, nil
+}
+
+// UpdateUser is the resolver for the updateUser field.
+func (r *mutationResolver) UpdateUser(ctx context.Context, input gql.UpdateUserInput) (*gql.User, error) {
+	user := &model.User{
+		Name:  *input.Name,
+		Email: *input.Email,
+	}
+	user.ID = input.ID
+
+	err := r.UserService.UpdateUser(user, "")
+	if err != nil {
+		return nil, err
+	}
+	return &gql.User{
+		ID:        input.ID,
+		Name:      user.Name,
+		Email:     user.Email,
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: user.UpdatedAt,
+	}, nil
+}
+
+// DeleteUser is the resolver for the deleteUser field.
+func (r *mutationResolver) DeleteUser(ctx context.Context, id uint) (bool, error) {
+	user := &model.User{}
+	user.ID = id
+
+	err := r.UserService.DeleteUser(user)
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
+
+// User is the resolver for the user field.
+func (r *queryResolver) User(ctx context.Context, id uint) (*gql.User, error) {
+	user, err := r.UserService.FindUserByID(id)
 	if err != nil {
 		return nil, err
 	}
@@ -55,5 +84,5 @@ func (r *queryResolver) User(ctx context.Context, id string) (*gql.User, error) 
 
 // Users is the resolver for the users field.
 func (r *queryResolver) Users(ctx context.Context) ([]*gql.User, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
+	panic("not implemented")
 }

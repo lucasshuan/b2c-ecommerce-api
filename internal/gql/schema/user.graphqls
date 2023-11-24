@@ -34,6 +34,4 @@ extend type Mutation {
   createUser(input: CreateUserInput!): User @isAdmin
   updateUser(input: UpdateUserInput!): User @isAdmin
   deleteUser(id: ID!): Boolean! @isAdmin
-
-  associateGoogleAccount(token: String!): User @isUser
 }

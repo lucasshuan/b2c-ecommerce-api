@@ -1,10 +1,4 @@
-type Category {
-  id: ID!
-  name: String!
-  products: [Product!]
-  created_at: Time!
-  updated_at: Time!
-}
+scalar Category
 
 input CreateCategoryInput {
   name: String!

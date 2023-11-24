@@ -1,5 +1,6 @@
 gqlgen:
-	go run github.com/99designs/gqlgen
+	go get github.com/99designs/gqlgen
+	go generate ./...
 
 server:
 	go run main.go server

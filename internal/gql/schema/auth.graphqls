@@ -22,20 +22,8 @@ input ChangePasswordInput {
 
 extend type Query {
   signIn(input: SignInInput!): AuthPayload
-  signInWithGoogle(token: String!): AuthPayload
-
-  signOut: Boolean!
-
-  refreshToken(token: String!): AuthPayload @isUser
 }
 
 extend type Mutation {
-  signUp(input: CreateUserInput!): User
-
-  verifyEmail(token: String!): User
-  resendEmailVerification(email: String!): Boolean!
-  forgotPassword(email: String!): Boolean!
-  resetPassword(input: ResetPasswordInput!): Boolean!
-
   changePassword(input: ChangePasswordInput!): Boolean! @isUser
 }

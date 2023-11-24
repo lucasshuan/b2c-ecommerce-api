@@ -74,12 +74,18 @@ autobind:
 # modelgen, the others will be allowed when binding to fields. Configure them to
 # your liking
 models:
+  Category:
+    model: 
+      - github.com/lucasshuan/b2c-ecommerce-api/internal/model.Category
+  Cart:
+    model: 
+      - github.com/lucasshuan/b2c-ecommerce-api/internal/model.Cart
+  CartProduct:
+    model: 
+      - github.com/lucasshuan/b2c-ecommerce-api/internal/model.CartProduct
   ID:
     model:
-      - github.com/99designs/gqlgen/graphql.ID
-      - github.com/99designs/gqlgen/graphql.Int
-      - github.com/99designs/gqlgen/graphql.Int64
-      - github.com/99designs/gqlgen/graphql.Int32
+      - github.com/99designs/gqlgen/graphql.Uint
   Int:
     model:
       - github.com/99designs/gqlgen/graphql.Int

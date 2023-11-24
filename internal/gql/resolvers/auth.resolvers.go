@@ -7,57 +7,9 @@ package resolvers
 import (
 	"context"
 	"fmt"
-	"strconv"
 
 	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
-	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 )
-
-// SignUp is the resolver for the signUp field.
-func (r *mutationResolver) SignUp(ctx context.Context, input gql.CreateUserInput) (*gql.User, error) {
-	user := &model.User{
-		Name:  input.Name,
-		Email: input.Email,
-	}
-
-	err := r.UserService.CreateUser(user, input.Password)
-	if err != nil {
-		return nil, err
-	}
-
-	return &gql.User{
-		ID:        strconv.Itoa(int(user.ID)),
-		Name:      user.Name,
-		Email:     user.Email,
-		CreatedAt: user.CreatedAt,
-		UpdatedAt: user.UpdatedAt,
-	}, nil
-}
-
-// SignUpWithGoogle is the resolver for the signUpWithGoogle field.
-func (r *mutationResolver) SignUpWithGoogle(ctx context.Context, token string) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: SignUpWithGoogle - signUpWithGoogle"))
-}
-
-// VerifyEmail is the resolver for the verifyEmail field.
-func (r *mutationResolver) VerifyEmail(ctx context.Context, token string) (*gql.User, error) {
-	panic(fmt.Errorf("not implemented: VerifyEmail - verifyEmail"))
-}
-
-// ResendEmailVerification is the resolver for the resendEmailVerification field.
-func (r *mutationResolver) ResendEmailVerification(ctx context.Context, email string) (bool, error) {
-	panic(fmt.Errorf("not implemented: ResendEmailVerification - resendEmailVerification"))
-}
-
-// ForgotPassword is the resolver for the forgotPassword field.
-func (r *mutationResolver) ForgotPassword(ctx context.Context, email string) (bool, error) {
-	panic(fmt.Errorf("not implemented: ForgotPassword - forgotPassword"))
-}
-
-// ResetPassword is the resolver for the resetPassword field.
-func (r *mutationResolver) ResetPassword(ctx context.Context, input gql.ResetPasswordInput) (bool, error) {
-	panic(fmt.Errorf("not implemented: ResetPassword - resetPassword"))
-}
 
 // ChangePassword is the resolver for the changePassword field.
 func (r *mutationResolver) ChangePassword(ctx context.Context, input gql.ChangePasswordInput) (bool, error) {
@@ -67,19 +19,4 @@ func (r *mutationResolver) ChangePassword(ctx context.Context, input gql.ChangeP
 // SignIn is the resolver for the signIn field.
 func (r *queryResolver) SignIn(ctx context.Context, input gql.SignInInput) (*gql.AuthPayload, error) {
 	panic(fmt.Errorf("not implemented: SignIn - signIn"))
-}
-
-// SignInWithGoogle is the resolver for the signInWithGoogle field.
-func (r *queryResolver) SignInWithGoogle(ctx context.Context, token string) (*gql.AuthPayload, error) {
-	panic(fmt.Errorf("not implemented: SignInWithGoogle - signInWithGoogle"))
-}
-
-// SignOut is the resolver for the signOut field.
-func (r *queryResolver) SignOut(ctx context.Context) (bool, error) {
-	panic(fmt.Errorf("not implemented: SignOut - signOut"))
-}
-
-// RefreshToken is the resolver for the refreshToken field.
-func (r *queryResolver) RefreshToken(ctx context.Context, token string) (*gql.AuthPayload, error) {
-	panic(fmt.Errorf("not implemented: RefreshToken - refreshToken"))
 }

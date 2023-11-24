@@ -9,34 +9,35 @@ import (
 	"fmt"
 
 	"github.com/lucasshuan/b2c-ecommerce-api/internal/gql"
+	"github.com/lucasshuan/b2c-ecommerce-api/internal/model"
 )
 
 // CreateCart is the resolver for the createCart field.
-func (r *mutationResolver) CreateCart(ctx context.Context, input gql.CreateCartInput) (*gql.Cart, error) {
+func (r *mutationResolver) CreateCart(ctx context.Context, input gql.CreateCartInput) (*model.Cart, error) {
 	panic(fmt.Errorf("not implemented: CreateCart - createCart"))
 }
 
 // AddProductToCart is the resolver for the addProductToCart field.
-func (r *mutationResolver) AddProductToCart(ctx context.Context, input gql.AddProductToCartInput) (*gql.CartProduct, error) {
+func (r *mutationResolver) AddProductToCart(ctx context.Context, input gql.AddProductToCartInput) (*model.CartProduct, error) {
 	panic(fmt.Errorf("not implemented: AddProductToCart - addProductToCart"))
 }
 
 // RemoveProductFromCart is the resolver for the removeProductFromCart field.
-func (r *mutationResolver) RemoveProductFromCart(ctx context.Context, cartProductID string) (*gql.Cart, error) {
+func (r *mutationResolver) RemoveProductFromCart(ctx context.Context, cartProductID uint) (*model.Cart, error) {
 	panic(fmt.Errorf("not implemented: RemoveProductFromCart - removeProductFromCart"))
 }
 
 // EmptyCart is the resolver for the emptyCart field.
-func (r *mutationResolver) EmptyCart(ctx context.Context, cartID string) (*gql.Cart, error) {
+func (r *mutationResolver) EmptyCart(ctx context.Context, cartID uint) (*model.Cart, error) {
 	panic(fmt.Errorf("not implemented: EmptyCart - emptyCart"))
 }
 
 // Cart is the resolver for the cart field.
-func (r *queryResolver) Cart(ctx context.Context, id string) (*gql.Cart, error) {
+func (r *queryResolver) Cart(ctx context.Context, id uint) (*model.Cart, error) {
 	panic(fmt.Errorf("not implemented: Cart - cart"))
 }
 
 // Carts is the resolver for the carts field.
-func (r *queryResolver) Carts(ctx context.Context, userID string) ([]*gql.Cart, error) {
+func (r *queryResolver) Carts(ctx context.Context, userID uint) ([]*model.Cart, error) {
 	panic(fmt.Errorf("not implemented: Carts - carts"))
 }

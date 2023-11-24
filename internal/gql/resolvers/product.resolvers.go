@@ -22,12 +22,12 @@ func (r *mutationResolver) UpdateProduct(ctx context.Context, input gql.UpdatePr
 }
 
 // DeleteProduct is the resolver for the deleteProduct field.
-func (r *mutationResolver) DeleteProduct(ctx context.Context, id string) (bool, error) {
+func (r *mutationResolver) DeleteProduct(ctx context.Context, id uint) (bool, error) {
 	panic(fmt.Errorf("not implemented: DeleteProduct - deleteProduct"))
 }
 
 // Product is the resolver for the product field.
-func (r *queryResolver) Product(ctx context.Context, id string) (*gql.Product, error) {
+func (r *queryResolver) Product(ctx context.Context, id uint) (*gql.Product, error) {
 	panic(fmt.Errorf("not implemented: Product - product"))
 }
 
